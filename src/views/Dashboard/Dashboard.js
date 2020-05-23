@@ -6,7 +6,7 @@ export default function Dashboard(props) {
     <React.Fragment>
       <div className="flex justify-center px-6 py-12 kt_dashboard_banner">
         <div className="text-white text-center">
-          <p className="text-4xl font-bold">Welcome Back ! </p>
+          <p className="text-4xl font-bold">Welcome ! </p>
           <p className="text-3xl font-semibold">Katherin</p>
           <img
             className="w-48 h-48 rounded-full mx-auto mt-8"
@@ -19,7 +19,7 @@ export default function Dashboard(props) {
         <div className="kt_container_card mx-6">
           <div className="kt_profile_card">
             <img
-              src="https://i.pinimg.com/originals/21/c1/13/21c113e05f1a219989a0b07a03b1577a.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
               alt="image1"
               className="profile-icon"
             />
@@ -32,7 +32,7 @@ export default function Dashboard(props) {
         <div className="kt_container_card mx-6">
           <div className="kt_profile_card">
             <img
-              src="https://i.pinimg.com/originals/21/c1/13/21c113e05f1a219989a0b07a03b1577a.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
               alt="image1"
               className="profile-icon"
             />
@@ -45,7 +45,7 @@ export default function Dashboard(props) {
         <div className="kt_container_card mx-6">
           <div className="kt_profile_card">
             <img
-              src="https://i.pinimg.com/originals/21/c1/13/21c113e05f1a219989a0b07a03b1577a.jpg"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
               alt="image1"
               className="profile-icon"
             />

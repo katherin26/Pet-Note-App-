@@ -1,10 +1,12 @@
+body {
+  font-family: "Montserrat", sans-serif;
+}
 .home-background {
   background-image: url("https://comoeducarauncachorro.com/blog/wp-content/uploads/216.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  font-family: "Montserrat", sans-serif;
   height: 100vh;
 
   overflow-x: hidden;

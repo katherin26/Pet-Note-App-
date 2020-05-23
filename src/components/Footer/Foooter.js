@@ -8,7 +8,12 @@ export default function Footer(props) {
   return (
     <div className={footerClasses}>
       <div className="w-auto">
-        <p>Create By Kathe</p>
+        <p>
+          <strong>
+            <i class="far fa-copyright"></i> <i class="fas fa-paw"></i>Pet-Note
+          </strong>{" "}
+          Created By <strong>Katherin Ochoa</strong> <strong>2020</strong>
+        </p>
       </div>
     </div>
   );
