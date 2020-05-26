@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./Footer.css";
 
-export default function Footer(props) {
+function Footer({ user }) {
   let footerClasses =
     "flex justify-center fixed bottom-0 left-0 w-full p-6 text-white ";
-  footerClasses += props.isPublicRoute ? "bg-transparent" : "bg-teal-600";
+  footerClasses += !user ? "bg-transparent" : "bg-teal-600";
   return (
     <div className={footerClasses}>
       <div className="w-auto">
@@ -18,3 +20,14 @@ export default function Footer(props) {
     </div>
   );
 }
+
+Footer.propTypes = {
+  user: PropTypes.object,
+};
+
+function mapStateToProps(state) {
+  const { user } = state.app;
+  return { user };
+}
+
+export default connect(mapStateToProps)(Footer);

@@ -1,10 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Header.css";
 
-export default function Header(props) {
+function Header({ user }) {
   let headerClasses = "flex items-center justify-between flex-wrap p-6 ";
-  headerClasses += props.isPublicRoute ? "bg-transparent" : "bg-teal-600";
+  headerClasses += !user ? "bg-transparent" : "bg-teal-600";
   return (
     <nav className={headerClasses}>
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -56,3 +58,14 @@ export default function Header(props) {
     </nav>
   );
 }
+
+Header.propTypes = {
+  user: PropTypes.object,
+};
+
+function mapStateToProps(state) {
+  const { user } = state.app;
+  return { user };
+}
+
+export default connect(mapStateToProps)(Header);
