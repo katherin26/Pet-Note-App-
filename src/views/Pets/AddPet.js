@@ -8,24 +8,33 @@ import {
   REQUEST_SENT,
   REQUEST_FINISHED,
   NOTIFY_USER,
+  ADDED_PET,
 } from "../../store/actions";
 
 class AddPet extends React.Component {
   async handleFormSubmit(pet) {
-    console.log("Form submitted");
-    console.log(pet);
     const { history, location, dispatch } = this.props;
     const { from } = location.state || { from: { pathname: "/dashboard" } };
 
     try {
-      dispatch({ type: REQUEST_SENT });
-      //const user = await logIn(this.state.email, this.state.password);
-      //dispatch({ type: LOGIN, user });
-      history.replace(from);
-    } catch (e) {
+      await createPet(pet);
+      dispatch({ type: ADDED_PET });
       dispatch({
         type: NOTIFY_USER,
-        notification: { type: "error", message: e.message },
+        notification: { type: "error", message: "Pet was successfully added" },
+      });
+      history.replace(from);
+    } catch (e) {
+      console.log(e.response);
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message:
+            e.response && e.response.status === 422
+              ? `${e.response.data.errors[0].param} ${e.response.data.errors[0].msg}`
+              : e.message,
+        },
       });
     } finally {
       dispatch({ type: REQUEST_FINISHED });
