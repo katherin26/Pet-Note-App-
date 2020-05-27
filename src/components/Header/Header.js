@@ -1,12 +1,36 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { logOut } from "../../services/auth";
+import { Link, useHistory } from "react-router-dom";
 import "./Header.css";
+import {
+  LOGOUT,
+  REQUEST_SENT,
+  REQUEST_FINISHED,
+  NOTIFY_USER,
+} from "../../store/actions";
 
-function Header({ user }) {
+function Header({ dispatch, user }) {
+  const history = useHistory();
   let headerClasses = "flex items-center justify-between flex-wrap p-6 ";
   headerClasses += !user ? "bg-transparent" : "bg-teal-600";
+  const logOutClickHandler = async () => {
+    try {
+      dispatch({ type: REQUEST_SENT });
+      await logOut();
+      dispatch({ type: LOGOUT });
+      history.replace("/login");
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: { type: "error", message: e.message },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  };
+
   return (
     <nav className={headerClasses}>
       <div className="flex items-center flex-shrink-0 text-white mr-6">
@@ -31,35 +55,61 @@ function Header({ user }) {
       </div>
       <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
         <div className="text-sm lg:flex-grow">
-          <Link
-            className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
-            to="/"
-          >
-            Home
-          </Link>
+          {!user ? (
+            <Link
+              className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              to="/"
+            >
+              Home
+            </Link>
+          ) : (
+            ""
+          )}
         </div>
-        <div className="mx-2">
-          <Link
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
-            to="/signup"
-          >
-            Sign up
-          </Link>
-        </div>
-        <div className="mx-2">
-          <Link
-            className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
-            to="/login"
-          >
-            Login
-          </Link>
-        </div>
+        {!user ? (
+          <div className="mx-2">
+            <Link
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
+              to="/signup"
+            >
+              Sign up
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
+        {!user ? (
+          <div className="mx-2">
+            <Link
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
+              to="/login"
+            >
+              Login
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
+
+        {user ? (
+          <div className="mx-2">
+            <button
+              onClick={logOutClickHandler}
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </nav>
   );
 }
 
 Header.propTypes = {
+  dispatch: PropTypes.func.isRequired,
   user: PropTypes.object,
 };
 

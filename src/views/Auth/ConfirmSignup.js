@@ -75,7 +75,7 @@ class ConfirmSignup extends React.Component {
     const { loading } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <form className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2">
+        <form className="bg-white bg-opacity-50 shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2">
           <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center pb-2">
             CONFIRM ACCOUNT
           </h1>

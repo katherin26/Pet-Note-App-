@@ -13,18 +13,7 @@ export async function logIn(email, password) {
 }
 
 export async function logOut() {
-  try {
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.signOut();
-    store.dispatch({ type: LOGOUT });
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.signOut();
 }
 
 export async function createAccount(
