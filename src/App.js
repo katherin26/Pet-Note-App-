@@ -16,6 +16,7 @@ import Login from "./views/Auth/Login";
 import ForgotPassword from "./views/Auth/ForgotPassword";
 import ResetPassword from "./views/Auth/ResetPassword";
 import Signup from "./views/Auth/Signup";
+import ConfirmSignup from "./views/Auth/ConfirmSignup";
 import Dashboard from "./views/Dashboard/Dashboard";
 
 function App({ dispatch, user, loading, notification }) {
@@ -41,6 +42,9 @@ function App({ dispatch, user, loading, notification }) {
           </PublicRoute>
           <PublicRoute exact path="/signup">
             <Signup />
+          </PublicRoute>
+          <PublicRoute exact path="/confirm-signup">
+            <ConfirmSignup />
           </PublicRoute>
           <PrivateRoute exact path="/dashboard">
             <Dashboard />

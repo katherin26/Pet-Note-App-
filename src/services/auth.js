@@ -47,20 +47,7 @@ export async function createAccount(
 }
 
 export async function confirmAccount(email, code) {
-  try {
-    console.log("Confirming ", email, code);
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.confirmSignUp(email, code);
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.confirmSignUp(email, code);
 }
 
 export async function resendVerificationCode(email) {
