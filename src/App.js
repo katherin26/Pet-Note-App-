@@ -9,6 +9,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Foooter";
 import Home from "./views/Home/Home";
+import Snackbar from "./components/Snackbar/Snackbar";
 import Stars from "./components/Stars/Stars";
 import Login from "./views/Auth/Login";
 import Signup from "./views/Auth/Signup";
@@ -19,21 +20,22 @@ function App({ dispatch, user, loading, notification }) {
   return (
     <div className={appClasses}>
       <Stars />
+      <Snackbar />
       <Header />
       <div className="app_page">
         <Switch>
-          <Route exact path="/">
+          <PublicRoute exact path="/">
             <Home />
-          </Route>
-          <Route exact path="/login">
+          </PublicRoute>
+          <PublicRoute exact path="/login">
             <Login />
-          </Route>
-          <Route exact path="/signup">
+          </PublicRoute>
+          <PublicRoute exact path="/signup">
             <Signup />
-          </Route>
-          <Route exact path="/dashboard">
+          </PublicRoute>
+          <PrivateRoute exact path="/dashboard">
             <Dashboard />
-          </Route>
+          </PrivateRoute>
         </Switch>
       </div>
       <Footer />

@@ -12,7 +12,8 @@ function Footer({ user }) {
       <div className="w-auto">
         <p>
           <strong>
-            <i class="far fa-copyright"></i> <i class="fas fa-paw"></i>Pet-Note
+            <i className="far fa-copyright"></i> <i className="fas fa-paw"></i>
+            Pet-Note
           </strong>{" "}
           Created By <strong>Katherin Ochoa</strong> <strong>2020</strong>
         </p>

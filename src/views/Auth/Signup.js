@@ -89,13 +89,13 @@ export default function Signup(props) {
             className=" mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             to="/dashboard"
           >
-            <i class="fas fa-check-double" />
+            <i className="fas fa-check-double" />
           </Link>
           <Link
             className="mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
             to="/"
           >
-            <i class="fas fa-times" />
+            <i className="fas fa-times" />
           </Link>
         </div>
       </form>
