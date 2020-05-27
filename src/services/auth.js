@@ -76,17 +76,7 @@ export async function confirmAccount(email, code) {
 }
 
 export async function resendVerificationCode(email) {
-  try {
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.resendSignUp(email);
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.resendSignUp(email);
 }
 
 export async function requestPasswordReset(email) {
@@ -94,19 +84,7 @@ export async function requestPasswordReset(email) {
 }
 
 export async function resetPassword(email, code, password) {
-  try {
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.forgotPasswordSubmit(email, code, password);
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.forgotPasswordSubmit(email, code, password);
 }
 
 export async function updateInformation(firstName, lastName, picture) {

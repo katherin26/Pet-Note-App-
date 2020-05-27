@@ -14,6 +14,7 @@ import Stars from "./components/Stars/Stars";
 import Home from "./views/Home/Home";
 import Login from "./views/Auth/Login";
 import ForgotPassword from "./views/Auth/ForgotPassword";
+import ResetPassword from "./views/Auth/ResetPassword";
 import Signup from "./views/Auth/Signup";
 import Dashboard from "./views/Dashboard/Dashboard";
 
@@ -34,6 +35,9 @@ function App({ dispatch, user, loading, notification }) {
           </PublicRoute>
           <PublicRoute exact path="/forgot-password">
             <ForgotPassword />
+          </PublicRoute>
+          <PublicRoute exact path="/reset-password">
+            <ResetPassword />
           </PublicRoute>
           <PublicRoute exact path="/signup">
             <Signup />
