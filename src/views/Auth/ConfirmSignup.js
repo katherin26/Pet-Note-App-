@@ -75,7 +75,10 @@ class ConfirmSignup extends React.Component {
     const { loading } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <form className="bg-white bg-opacity-50 shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2">
+        <form
+          className="bg-white bg-opacity-50 shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          onSubmit={this.handleSubmitClick.bind(this)}
+        >
           <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center pb-2">
             CONFIRM ACCOUNT
           </h1>
@@ -99,6 +102,7 @@ class ConfirmSignup extends React.Component {
                 value={this.state.email}
                 onChange={this.handleInputChange.bind(this)}
                 placeholder="Email"
+                required
               />
             </div>
 
@@ -116,14 +120,14 @@ class ConfirmSignup extends React.Component {
                 value={this.state.code}
                 onChange={this.handleInputChange.bind(this)}
                 placeholder="Enter verification code"
+                required
               />
             </div>
 
             <div className="flex items-center justify-start">
               <button
                 className="tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
-                type="button"
-                onClick={this.handleSubmitClick.bind(this)}
+                type="submit"
                 disabled={loading}
               >
                 <span className="tooltiptext">Submit</span>

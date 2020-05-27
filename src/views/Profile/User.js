@@ -14,8 +14,6 @@ import {
 class User extends React.Component {
   render() {
     const { loading, user, location, match } = this.props;
-    console.log(match);
-
     return (
       <React.Fragment>
         <div className="flex justify-center items-center w-full h-full mt-8">

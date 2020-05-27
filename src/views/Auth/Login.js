@@ -47,7 +47,10 @@ class Login extends React.Component {
     const { loading } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <form className="bg-white bg-opacity-50 shadow-md rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2">
+        <form
+          className="bg-white bg-opacity-50 shadow-md rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          onSubmit={this.handleLoginClick.bind(this)}
+        >
           <div className="mb-4">
             <label
               className="block text-teal-800 text-sm font-bold mb-2"
@@ -62,6 +65,7 @@ class Login extends React.Component {
               value={this.state.email}
               onChange={this.handleInputChange.bind(this)}
               placeholder="e.g@gmail.com"
+              required
             />
           </div>
           <div className="mb-6">
@@ -77,14 +81,15 @@ class Login extends React.Component {
               type="password"
               value={this.state.password}
               onChange={this.handleInputChange.bind(this)}
-              placeholder="******************"
+              placeholder="Enter your password"
+              required
             />
           </div>
           <div className="flex items-center justify-between">
             <button
               className=" mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              onClick={this.handleLoginClick.bind(this)}
               disabled={loading}
+              type="submit"
             >
               <i className="fas fa-check-double" />
             </button>

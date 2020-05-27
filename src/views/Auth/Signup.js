@@ -57,7 +57,10 @@ class Signup extends React.Component {
     const { loading } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <form className="bg-white bg-opacity-50 shadow-md rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2 ">
+        <form
+          className="bg-white bg-opacity-50 shadow-md rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2 "
+          onSubmit={this.handleSubmitClick.bind(this)}
+        >
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label
@@ -73,6 +76,7 @@ class Signup extends React.Component {
                 value={this.state.firstName}
                 onChange={this.handleInputChange.bind(this)}
                 placeholder="Jane"
+                required
               />
             </div>
             <div className="w-full md:w-1/2 px-3">
@@ -89,6 +93,7 @@ class Signup extends React.Component {
                 value={this.state.lastName}
                 onChange={this.handleInputChange.bind(this)}
                 placeholder="Doe"
+                required
               />
             </div>
           </div>
@@ -107,6 +112,7 @@ class Signup extends React.Component {
                 value={this.state.email}
                 onChange={this.handleInputChange.bind(this)}
                 placeholder="e.g@gmail.com"
+                required
               />
             </div>
           </div>
@@ -124,7 +130,8 @@ class Signup extends React.Component {
                 name="password"
                 value={this.state.password}
                 onChange={this.handleInputChange.bind(this)}
-                placeholder="******************"
+                placeholder="Enter password"
+                required
               />
             </div>
           </div>
@@ -142,7 +149,8 @@ class Signup extends React.Component {
                 name="confirmPassword"
                 value={this.state.confirmPassword}
                 onChange={this.handleInputChange.bind(this)}
-                placeholder="******************"
+                placeholder="Confirm password"
+                required
               />
             </div>
           </div>
@@ -150,8 +158,8 @@ class Signup extends React.Component {
           <div className="flex items-center justify-start">
             <button
               className=" mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              onClick={this.handleSubmitClick.bind(this)}
               disabled={loading}
+              type="submit"
             >
               <i className="fas fa-check-double" />
             </button>
