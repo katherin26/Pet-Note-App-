@@ -1,12 +1,4 @@
 import { Auth } from "aws-amplify";
-import store from "../store/index";
-import {
-  LOGIN,
-  LOGOUT,
-  REQUEST_SENT,
-  REQUEST_FINISHED,
-  NOTIFY_USER,
-} from "../store/actions";
 
 export async function logIn(email, password) {
   return Auth.signIn({ username: email, password });
@@ -66,18 +58,6 @@ export async function getCurrentUser() {
 }
 
 export async function changePassword(oldPassword, newPassword) {
-  try {
-    const user = await Auth.currentAuthenticatedUser();
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.changePassword(user, oldPassword, newPassword);
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  const user = await Auth.currentAuthenticatedUser();
+  return Auth.changePassword(user, oldPassword, newPassword);
 }

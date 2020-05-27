@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { withRouter, Link, Switch, Route } from "react-router-dom";
 import PrivateRoute from "../../components/Router/PrivateRoute";
 import UpdateInformation from "./UpdateInformation";
+import ChangePassword from "./ChangePassword";
 import {
   REQUEST_SENT,
   REQUEST_FINISHED,
@@ -90,6 +91,9 @@ class User extends React.Component {
         <Switch>
           <PrivateRoute path={`${match.path}/update-information`}>
             <UpdateInformation />
+          </PrivateRoute>
+          <PrivateRoute path={`${match.path}/change-password`}>
+            <ChangePassword />
           </PrivateRoute>
         </Switch>
       </React.Fragment>

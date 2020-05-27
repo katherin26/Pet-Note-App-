@@ -1,43 +1,39 @@
 import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { updateInformation, getCurrentUser } from "../../services/auth";
+import { changePassword } from "../../services/auth";
 import { withRouter, Link } from "react-router-dom";
 import {
-  UPDATE_USER,
   REQUEST_SENT,
   REQUEST_FINISHED,
   NOTIFY_USER,
 } from "../../store/actions";
 
-class UpdateInformation extends React.Component {
-  constructor(props) {
-    super(props);
-    const { user } = props;
-    this.state = {
-      firstName: user.attributes.given_name,
-      lastName: user.attributes.family_name,
-      avatar: user.attributes.picture,
-    };
-  }
+class ChangePassword extends React.Component {
+  state = {
+    password: "",
+    newPassword: "",
+    confirmPassword: "",
+  };
+
   async handleSubmitClick(e) {
     e.preventDefault();
     const { history, dispatch } = this.props;
 
+    if (this.state.newPassword !== this.state.confirmPassword)
+      dispatch({
+        type: NOTIFY_USER,
+        notification: { type: "error", message: "Passwords do not match" },
+      });
+
     try {
       dispatch({ type: REQUEST_SENT });
-      await updateInformation(
-        this.state.firstName,
-        this.state.lastName,
-        this.state.avatar
-      );
-      const updatedUser = await getCurrentUser();
-      dispatch({ type: UPDATE_USER, user: updatedUser });
+      await changePassword(this.state.password, this.state.newPassword);
       dispatch({
         type: NOTIFY_USER,
         notification: {
           type: "success",
-          message: "User was successfully updated",
+          message: "Password was successfully changed",
         },
       });
       history.replace("/profile");
@@ -64,24 +60,24 @@ class UpdateInformation extends React.Component {
           onSubmit={this.handleSubmitClick.bind(this)}
         >
           <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center pb-2">
-            CHANGE PERSONAL INFORMATION
+            RESET PASSWORD
           </h1>
 
           <div className="border-t-2 border-gray-300 pt-5">
             <div className="w-full ">
               <label
                 className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                htmlFor="firstName"
+                htmlFor="password"
               >
-                FIRST NAME
+                Current Password
               </label>
               <input
                 className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                name="firstName"
-                value={this.state.firstName}
+                name="password"
+                value={this.state.password}
                 onChange={this.handleInputChange.bind(this)}
-                type="text"
-                placeholder="Your Name"
+                type="password"
+                placeholder="**********"
                 required
               />
             </div>
@@ -89,17 +85,17 @@ class UpdateInformation extends React.Component {
             <div className="w-full ">
               <label
                 className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                htmlFor="lastName"
+                htmlFor="newPassword"
               >
-                LAST NAME
+                New PassWord
               </label>
               <input
                 className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                name="lastName"
-                value={this.state.lastName}
+                name="newPassword"
+                value={this.state.newPassword}
                 onChange={this.handleInputChange.bind(this)}
-                type="text"
-                placeholder="Your Last Name"
+                type="password"
+                placeholder="**********"
                 required
               />
             </div>
@@ -107,17 +103,18 @@ class UpdateInformation extends React.Component {
             <div className="w-full ">
               <label
                 className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                htmlFor="avatar"
+                htmlFor="confirmPassword"
               >
-                AVATAR
+                Confirm New Password
               </label>
               <input
                 className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                name="avatar"
-                value={this.state.avatar}
+                name="confirmPassword"
+                value={this.state.confirmPassword}
                 onChange={this.handleInputChange.bind(this)}
-                type="text"
-                placeholder="..."
+                type="password"
+                placeholder="**********"
+                required
               />
             </div>
 
@@ -146,7 +143,7 @@ class UpdateInformation extends React.Component {
   }
 }
 
-UpdateInformation.propTypes = {
+ChangePassword.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   user: PropTypes.object,
@@ -159,4 +156,4 @@ function mapStateToProps(state) {
   return { loading, user };
 }
 
-export default connect(mapStateToProps)(withRouter(UpdateInformation));
+export default connect(mapStateToProps)(withRouter(ChangePassword));
