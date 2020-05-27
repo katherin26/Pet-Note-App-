@@ -18,6 +18,7 @@ export default class PetForm extends React.Component {
         weight: "",
         rabies_tag: "",
         rabies_exp: "",
+        sterilized: false,
       };
     }
   }
@@ -30,6 +31,15 @@ export default class PetForm extends React.Component {
 
   handleInputChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  getSterilizedStyles() {
+    return {
+      active:
+        "mr-2 bg-teal-500 text-white font-semibold  py-2 px-4 border border-teal-400  hover:border-teal-800 rounded",
+      inactive:
+        "mr-2 bg-transparent  text-teal-400 font-semibold  py-2 px-4 border border-teal-400  hover:border-teal-800 rounded",
+    };
   }
 
   render() {
@@ -59,7 +69,10 @@ export default class PetForm extends React.Component {
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
                       name="name"
+                      value={this.state.name}
+                      onChange={this.handleInputChange.bind(this)}
                       placeholder="Pet Name"
+                      required
                     />
                   </div>
 
@@ -74,17 +87,27 @@ export default class PetForm extends React.Component {
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
                       name="breed"
+                      value={this.state.breed}
+                      onChange={this.handleInputChange.bind(this)}
                       placeholder="Poodle, Siamese Cat"
+                      required
                     />
                   </div>
                 </div>
                 <div className="flex flex-wrap -mx-3 mb-6">
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <div className="relative">
-                      <select className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        <option>Dog</option>
-                        <option>Cat</option>
-                        <option>Guinea Pig</option>
+                      <select
+                        value={this.state.species}
+                        onChange={this.handleInputChange.bind(this)}
+                        name="species"
+                        className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        required
+                      >
+                        <option value="">Species</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Guinea Pig">Guinea Pig</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg
@@ -100,9 +123,16 @@ export default class PetForm extends React.Component {
 
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <div className="relative">
-                      <select className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        <option>Female</option>
-                        <option>Male</option>
+                      <select
+                        value={this.state.gender}
+                        onChange={this.handleInputChange.bind(this)}
+                        name="gender"
+                        className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        required
+                      >
+                        <option value="">Gender</option>
+                        <option value="F">Female</option>
+                        <option value="M">Male</option>
                       </select>
                       <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
                         <svg
@@ -126,9 +156,11 @@ export default class PetForm extends React.Component {
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                      type="text"
-                      name="birthday"
-                      placeholder="31/10/17"
+                      type="date"
+                      name="dob"
+                      value={this.state.dob}
+                      onChange={this.handleInputChange.bind(this)}
+                      required
                     />
                   </div>
 
@@ -142,6 +174,8 @@ export default class PetForm extends React.Component {
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      value={this.state.allergies}
+                      onChange={this.handleInputChange.bind(this)}
                       name="allergies"
                       placeholder="Vaccine, Medical"
                     />
@@ -160,6 +194,8 @@ export default class PetForm extends React.Component {
                       type="text"
                       name="microchip"
                       placeholder="Number"
+                      value={this.state.microchip}
+                      onChange={this.handleInputChange.bind(this)}
                     />
                   </div>
 
@@ -175,8 +211,11 @@ export default class PetForm extends React.Component {
                       type="number"
                       name="weight"
                       placeholder="7lb"
+                      value={this.state.weight}
+                      onChange={this.handleInputChange.bind(this)}
                       min="1"
                       max="100"
+                      required
                     />
                   </div>
                 </div>
@@ -184,29 +223,33 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="licenseNumber"
+                      htmlFor="rabies_tag"
                     >
                       Rabies Tag
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
-                      name="licenseNumber"
+                      name="rabies_tag"
                       placeholder="number"
+                      value={this.state.rabies_tag}
+                      onChange={this.handleInputChange.bind(this)}
                     />
                   </div>
 
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="expirationDate"
+                      htmlFor="rabies_exp"
                     >
                       Rabies Tag Expiration
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                      type="text"
-                      name="expirationDate"
+                      type="date"
+                      name="rabies_exp"
+                      value={this.state.rabies_exp}
+                      onChange={this.handleInputChange.bind(this)}
                     />
                   </div>
                 </div>
@@ -221,17 +264,25 @@ export default class PetForm extends React.Component {
                   </div>
                   <div>
                     <button
-                      className="mr-2 bg-transparent  text-teal-400 font-semibold  py-2 px-4 border border-teal-400  hover:border-teal-800 rounded"
+                      className={
+                        this.state.sterilized
+                          ? this.getSterilizedStyles().active
+                          : this.getSterilizedStyles().inactive
+                      }
+                      onClick={() => this.setState({ sterilized: true })}
                       type="button"
-                      id="yes-btn"
                     >
                       Yes
                     </button>
 
                     <button
-                      className="bg-transparent text-teal-400 font-semibold py-2 px-4 border border-teal-400 hover:border-teal-800 rounded"
+                      className={
+                        !this.state.sterilized
+                          ? this.getSterilizedStyles().active
+                          : this.getSterilizedStyles().inactive
+                      }
+                      onClick={() => this.setState({ sterilized: false })}
                       type="button"
-                      id="no-btn"
                     >
                       No
                     </button>

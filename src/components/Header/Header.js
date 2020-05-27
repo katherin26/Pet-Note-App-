@@ -121,18 +121,18 @@ function Header({ dispatch, user }) {
         )}
 
         {user ? (
-          <div class="p-5">
+          <div className="p-5">
             <div
-              class="dropdown inline-block relative"
+              className="dropdown inline-block relative"
               onMouseLeave={() => setShowDropdown(false)}
             >
               <button
                 onClick={() => setShowDropdown(!showDropdown)}
-                class="text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold inline-flex items-center"
+                className="text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold inline-flex items-center"
               >
-                <span class="mr-1">{user.attributes.given_name}</span>
+                <span className="mr-1">{user.attributes.given_name}</span>
                 <svg
-                  class="fill-current h-4 w-4"
+                  className="fill-current h-4 w-4"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                 >
@@ -140,7 +140,7 @@ function Header({ dispatch, user }) {
                 </svg>
               </button>
               {showDropdown ? (
-                <ul class="dropdown-menu absolute text-gray-700 pt-1 right-0 w-full">
+                <ul className="dropdown-menu absolute text-gray-700 pt-1 right-0 w-full">
                   <li on>
                     <Link
                       onClick={() => setShowDropdown(false)}
