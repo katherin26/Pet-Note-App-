@@ -5,7 +5,7 @@ import "./Footer.css";
 
 function Footer({ user }) {
   let footerClasses =
-    "flex justify-center fixed bottom-0 left-0 w-full p-6 text-white ";
+    "flex justify-center fixed bottom-0 left-0 w-full p-2 text-white ";
   footerClasses += !user ? "bg-transparent" : "bg-teal-600";
   return (
     <div className={footerClasses}>

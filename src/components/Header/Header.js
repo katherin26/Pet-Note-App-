@@ -14,8 +14,8 @@ import {
 function Header({ dispatch, user }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useHistory();
-  let headerClasses = "flex items-center justify-between flex-wrap p-6 ";
-  headerClasses += !user ? "bg-transparent" : "bg-teal-600";
+  let headerClasses = "flex items-center justify-between flex-wrap ";
+  headerClasses += !user ? "bg-transparent p-6" : "bg-teal-600";
   const logOutClickHandler = async (e) => {
     e.preventDefault();
     try {

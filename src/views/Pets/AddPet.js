@@ -39,7 +39,7 @@ class AddPet extends React.Component {
   render() {
     const { loading } = this.props;
     return (
-      <div className="mt-8">
+      <div className="">
         <PetForm
           formHandler={this.handleFormSubmit.bind(this)}
           loading={loading}
