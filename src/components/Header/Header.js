@@ -93,6 +93,18 @@ function Header({ dispatch, user }) {
 
         {user ? (
           <div className="mx-2">
+            <Link
+              className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
+              to="/profile"
+            >
+              Profile
+            </Link>
+          </div>
+        ) : (
+          ""
+        )}
+        {user ? (
+          <div className="mx-2">
             <button
               onClick={logOutClickHandler}
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"

@@ -5,6 +5,7 @@ import {
   REQUEST_FINISHED,
   NOTIFY_USER,
   CLEAR_NOTIFICATION,
+  UPDATE_USER,
 } from "../actions";
 
 const initialState = {
@@ -15,6 +16,7 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_USER:
     case LOGIN:
       localStorage.setItem("user", JSON.stringify(action.user));
       return {

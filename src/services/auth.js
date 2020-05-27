@@ -52,27 +52,17 @@ export async function resetPassword(email, code, password) {
 }
 
 export async function updateInformation(firstName, lastName, picture) {
-  try {
-    const user = await Auth.currentAuthenticatedUser();
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.updateUserAttributes(user, {
-      given_name: firstName,
-      family_name: lastName,
-      name: `${firstName} ${lastName}`,
-      picture,
-    });
-    const updatedUser = await Auth.currentAuthenticatedUser();
-    store.dispatch({ type: LOGIN, user: updatedUser });
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  const user = await Auth.currentAuthenticatedUser();
+  return Auth.updateUserAttributes(user, {
+    given_name: firstName,
+    family_name: lastName,
+    name: `${firstName} ${lastName}`,
+    picture,
+  });
+}
+
+export async function getCurrentUser() {
+  return Auth.currentAuthenticatedUser();
 }
 
 export async function changePassword(oldPassword, newPassword) {

@@ -18,6 +18,7 @@ import ResetPassword from "./views/Auth/ResetPassword";
 import Signup from "./views/Auth/Signup";
 import ConfirmSignup from "./views/Auth/ConfirmSignup";
 import Dashboard from "./views/Dashboard/Dashboard";
+import User from "./views/Profile/User";
 
 function App({ dispatch, user, loading, notification }) {
   const appClasses = user ? "App" : "home-background";
@@ -48,6 +49,9 @@ function App({ dispatch, user, loading, notification }) {
           </PublicRoute>
           <PrivateRoute exact path="/dashboard">
             <Dashboard />
+          </PrivateRoute>
+          <PrivateRoute path="/profile">
+            <User />
           </PrivateRoute>
         </Switch>
       </div>

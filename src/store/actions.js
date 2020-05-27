@@ -7,6 +7,7 @@ export const REQUEST_SENT = "REQUEST_SENT";
 export const REQUEST_FINISHED = "REQUEST_FINISHED";
 export const NOTIFY_USER = "NOTIFY_USER";
 export const CLEAR_NOTIFICATION = "CLEAR_NOTIFICATION";
+export const UPDATE_USER = "UPDATE_USER";
 
 // Pet actions
 export const LOAD_PETS = "LOAD_PETS";
