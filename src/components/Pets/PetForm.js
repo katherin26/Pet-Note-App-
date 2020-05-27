@@ -36,12 +36,12 @@ export default class PetForm extends React.Component {
     const { loading } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <div className="w-1/2 rounded overflow-hidden shadow-lg ">
+        <div className=" w-full lg:w-1/4  rounded overflow-hidden shadow-lg ">
           <img
-            className=" w-1/3 mx-auto  border shadow-md rounded-full"
+            className=" w-1/3  mx-auto  border shadow-md rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
           />
-          <div className="px-6 py-4">
+          <div className=" w-full px-6 py-4">
             <div className="flex justify-center items-center w-full h-full">
               <form
                 className=" w-full max-w-lg"
@@ -120,13 +120,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-first-name"
+                      htmlFor="birthday"
                     >
                       Birthday
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      name="birthday"
                       placeholder="31/10/17"
                     />
                   </div>
@@ -134,13 +135,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-allergies"
+                      htmlFor="allergies"
                     >
                       Allergies
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      name="allergies"
                       placeholder="Vaccine, Medical"
                     />
                   </div>
@@ -149,13 +151,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-microchip"
+                      htmlFor="microchip"
                     >
                       Microchip
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      name="microchip"
                       placeholder="Number"
                     />
                   </div>
@@ -163,13 +166,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-weight"
+                      htmlFor="weight"
                     >
                       Weight
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="number"
+                      name="weight"
                       placeholder="7lb"
                       min="1"
                       max="100"
@@ -180,13 +184,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-licensenumber"
+                      htmlFor="licenseNumber"
                     >
                       Rabies Tag
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      name="licenseNumber"
                       placeholder="number"
                     />
                   </div>
@@ -194,13 +199,14 @@ export default class PetForm extends React.Component {
                   <div className="w-full md:w-1/2 px-3">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-expirationdate"
+                      htmlFor="expirationDate"
                     >
                       Rabies Tag Expiration
                     </label>
                     <input
                       className="appearance-none block w-full bg-gray-100 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                       type="text"
+                      name="expirationDate"
                     />
                   </div>
                 </div>
@@ -208,7 +214,7 @@ export default class PetForm extends React.Component {
                   <div className="w-full text-center">
                     <label
                       className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
-                      htmlFor="grid-expirationdate "
+                      htmlFor="Stetilized"
                     >
                       Sterilized
                     </label>

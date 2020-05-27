@@ -17,14 +17,14 @@ class User extends React.Component {
     const { loading, user, location, match } = this.props;
     return (
       <React.Fragment>
-        <div className="flex justify-center items-center w-full h-full mt-8">
-          <div className="w-11/12 rounded overflow-hidden shadow-lg ">
-            <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center pb-2">
+        <div className="flex justify-center items-center w-full h-full mt-1">
+          <div className=" w-3/4 sm:w-full md:w-2/4 lg:3/4 rounded overflow-hidden shadow-lg ">
+            <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center p-2">
               PROFILE
             </h1>
 
-            <div className="border-t-2 border-gray-300 pt-5">
-              <div className="flex justify-center items-center">
+            <div className="border-t-2 border-gray-300 pt-5 ">
+              <div className="w-full flex flex-wrap w-full justify-center items-center">
                 <div className=" flex-col">
                   <img
                     className=" w-1/2  mx-auto  border shadow-md rounded-full"
@@ -32,35 +32,37 @@ class User extends React.Component {
                   />
                 </div>
 
-                <div className="flex w-1/2 pl-2 overflow-hidden  ">
+                <div className="flex w-full p-1 overflow-hidden  ">
                   <div className="divide-y divide-gray-400 w-full">
-                    <div className="flex">
-                      <div className="py-2 w-1/2 text-right pr-5  text-teal-800 font-bold">
+                    <div className="flex flex-wrap w-full">
+                      <div className="py-2 sm:pr-5 w-full sm:w-1/2 text-center sm:text-right text-teal-800 font-bold">
                         First Name:
                       </div>
-                      <div className="py-2 pl-5">
+                      <div className="py-2 sm:pl-5 w-full sm:w-1/2 text-center sm:text-left">
                         {user.attributes.given_name}
                       </div>
                     </div>
-                    <div className="flex">
-                      <div className="py-2 w-1/2 text-right pr-5  text-teal-800 font-bold">
+                    <div className="flex flex-wrap w-full">
+                      <div className="py-2 sm:pr-5 w-full sm:w-1/2 text-center sm:text-right  text-teal-800 font-bold">
                         Last Name:
                       </div>
-                      <div className="py-2 pl-5">
+                      <div className="py-2 sm:pl-5 w-full sm:w-1/2 text-center sm:text-left">
                         {user.attributes.family_name}
                       </div>
                     </div>
-                    <div className="flex">
-                      <div className="py-2 w-1/2 text-right pr-5  text-teal-800 font-bold">
+                    <div className="flex-wrap w-full">
+                      <div className="py-2 sm:pr-5 w-full sm:w-1/2 text-center sm:text-right text-teal-800 font-bold">
                         Email:
                       </div>
-                      <div className="py-2 pl-5">{user.attributes.email}</div>
+                      <div className="py-2 sm:pl-5 w-full sm:w-1/2 text-center sm:text-left">
+                        {user.attributes.email}
+                      </div>
                     </div>
                     <div className="flex">
                       <div className="py-2 w-1/2 text-right pr-5  text-teal-800 font-bold">
                         {" "}
                         <Link
-                          className="tooltip mt-2 mr-2 bg-orange-300 hover:bg-orange-400  text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
+                          className="tooltip mt-2 mr-2 bg-orange-400 hover:bg-orange-500  text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
                           type="button"
                           to={`${match.url}/update-information`}
                         >

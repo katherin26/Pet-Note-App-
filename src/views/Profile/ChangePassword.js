@@ -82,7 +82,7 @@ class ChangePassword extends React.Component {
               />
             </div>
 
-            <div className="w-full ">
+            <div className="w-full">
               <label
                 className="block uppercase tracking-wide text-teal-800 text-xs font-bold mb-2"
                 htmlFor="newPassword"

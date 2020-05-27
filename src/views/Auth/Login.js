@@ -87,10 +87,11 @@ class Login extends React.Component {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className=" mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               disabled={loading}
               type="submit"
             >
+              <span className="tooltiptext">Submit</span>
               <i className="fas fa-check-double" />
             </button>
 

@@ -14,14 +14,14 @@ class Dashboard extends React.Component {
     const { loading, user } = this.props;
     return (
       <React.Fragment>
-        <div className="flex justify-center px-6 py-12 kt_dashboard_banner">
+        <div className="flex justify-center p-3 kt_dashboard_banner">
           <div className="text-white text-center">
             <p className="text-4xl font-bold">Welcome ! </p>
             <p className="text-3xl font-semibold">
               {user.attributes.given_name}
             </p>
             <img
-              className="w-48 h-48 rounded-full mx-auto mt-8"
+              className="w-40 h-40 rounded-full mx-auto mt-5"
               src="https://media1.tenor.com/images/a403ab437cabe6b1d988cd7a74ffa046/tenor.gif?itemid=14477191"
               alt="Hello"
             ></img>

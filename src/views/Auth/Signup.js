@@ -157,16 +157,18 @@ class Signup extends React.Component {
 
           <div className="flex items-center justify-start">
             <button
-              className=" mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className=" tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               disabled={loading}
               type="submit"
             >
+              <span className="tooltiptext">Submit</span>
               <i className="fas fa-check-double" />
             </button>
             <Link
-              className="mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
+              className="tooltip mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline "
               to="/"
             >
+              <span className="tooltiptext">Cancel</span>
               <i className="fas fa-times" />
             </Link>
           </div>
