@@ -90,19 +90,7 @@ export async function resendVerificationCode(email) {
 }
 
 export async function requestPasswordReset(email) {
-  try {
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.forgotPassword(email);
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.forgotPassword(email);
 }
 
 export async function resetPassword(email, code, password) {
