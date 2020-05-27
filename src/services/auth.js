@@ -34,28 +34,16 @@ export async function createAccount(
   lastName,
   picture
 ) {
-  try {
-    store.dispatch({ type: REQUEST_SENT });
-    await Auth.signUp({
-      username: email,
-      password,
-      attributes: {
-        given_name: firstName,
-        family_name: lastName,
-        name: `${firstName} ${lastName}`,
-        picture,
-      },
-    });
-    return true;
-  } catch (e) {
-    store.dispatch({
-      type: NOTIFY_USER,
-      notification: { type: "error", message: e.message },
-    });
-    return false;
-  } finally {
-    store.dispatch({ type: REQUEST_FINISHED });
-  }
+  return Auth.signUp({
+    username: email,
+    password,
+    attributes: {
+      given_name: firstName,
+      family_name: lastName,
+      name: `${firstName} ${lastName}`,
+      picture,
+    },
+  });
 }
 
 export async function confirmAccount(email, code) {
