@@ -60,10 +60,20 @@ function Header({ dispatch, user }) {
         <div className="text-sm lg:flex-grow">
           {!user ? (
             <Link
-              className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              className="block mt-4 mx-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               to="/"
             >
               Home
+            </Link>
+          ) : (
+            ""
+          )}
+          {!user ? (
+            <Link
+              className="block mt-4 mx-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+              to="/about"
+            >
+              About
             </Link>
           ) : (
             ""

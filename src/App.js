@@ -12,6 +12,7 @@ import Snackbar from "./components/Snackbar/Snackbar";
 import Stars from "./components/Stars/Stars";
 
 import Home from "./views/Home/Home";
+import About from "./views/About/About";
 import Login from "./views/Auth/Login";
 import ForgotPassword from "./views/Auth/ForgotPassword";
 import ResetPassword from "./views/Auth/ResetPassword";
@@ -33,6 +34,9 @@ function App({ dispatch, user, loading, notification }) {
         <Switch>
           <PublicRoute exact path="/">
             <Home />
+          </PublicRoute>
+          <PublicRoute exact path="/about">
+            <About />
           </PublicRoute>
           <PublicRoute exact path="/login">
             <Login />

@@ -1,9 +1,21 @@
 .kathe_banner {
-  width: 35%;
+  width: 85%;
   height: 280px;
 }
 
 .kathe_overlay {
   height: 75%;
   width: 110%;
+}
+
+@media screen and (min-width: 370px) {
+  .kathe_banner {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 770px) {
+  .kathe_banner {
+    width: 35%;
+  }
 }
