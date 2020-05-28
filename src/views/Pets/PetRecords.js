@@ -62,12 +62,13 @@ class PetRecords extends React.Component {
 
     return (
       <div class="mt-5">
-        <ul className="flex border-b-2 text-teal-800 ">
-          <li className="-mb-px mr-1">
+        <ul className="flex border-b-2 text-teal-800 overflow-scroll">
+          <li className="mr-1">
             <NavLink
               className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
               activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/profile"
+              style={{ minWidth: "135px" }}
             >
               Pet Profile
             </NavLink>
@@ -104,6 +105,7 @@ class PetRecords extends React.Component {
               className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
               activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/petnotes"
+              style={{ minWidth: "135px" }}
             >
               Pet-Notes
             </NavLink>
