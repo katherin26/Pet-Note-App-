@@ -19,23 +19,21 @@ class Dashboard extends React.Component {
 
     if (pets.length) return;
 
-    if (this)
-      try {
-        dispatch({ type: REQUEST_SENT });
-        const response = await getPets();
-        dispatch({ type: LOAD_PETS, pets: response.pets, next: response.next });
-      } catch (e) {
-        console.log(e.message);
-        dispatch({
-          type: NOTIFY_USER,
-          notification: {
-            type: "error",
-            message: e.message,
-          },
-        });
-      } finally {
-        dispatch({ type: REQUEST_FINISHED });
-      }
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getPets();
+      dispatch({ type: LOAD_PETS, pets: response.pets, next: response.next });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
   }
 
   selectHandler(pet) {

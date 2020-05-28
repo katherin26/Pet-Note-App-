@@ -15,5 +15,25 @@ export async function updatePet(petId, pet) {
 }
 
 export async function deletePet(petId) {
-  return API.del(`/pets/${petId}`);
+  return API.del("PetNote", `/pets/${petId}`);
+}
+
+export async function getVaccinations(petId) {
+  return API.get("PetNote", `/pets/${petId}/vaccinations`);
+}
+
+export async function createVaccination(petId, vaccination) {
+  const payload = { ...vaccination };
+  return API.post("PetNote", `/pets/${petId}/vaccinations`, { body: payload });
+}
+
+export async function updateVaccination(petId, vaccinationId, vaccination) {
+  const payload = { ...vaccination };
+  return API.patch("PetNote", `/pets/${petId}/vaccinations/${vaccinationId}`, {
+    body: payload,
+  });
+}
+
+export async function deleteVaccination(petId, vaccinationId) {
+  return API.del("PetNote", `/pets/${petId}/vaccinations/${vaccinationId}`);
 }

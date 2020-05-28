@@ -5,6 +5,7 @@ import { withRouter, NavLink, Switch } from "react-router-dom";
 import PrivateRoute from "../../components/Router/PrivateRoute";
 import PetProfile from "../../components/Pets/PetProfile";
 import PetForm from "../../components/Pets/PetForm";
+import Vaccinations from "../Vaccinations/Vaccionations";
 import { updatePet } from "../../services/api";
 import {
   REQUEST_SENT,
@@ -129,7 +130,7 @@ class PetRecords extends React.Component {
             {selectedPet ? <PetProfile pet={selectedPet} /> : ""}
           </PrivateRoute>
           <PrivateRoute path="/pet/records/vaccinations">
-            <h1>vaccinations</h1>
+            <Vaccinations />
           </PrivateRoute>
           <PrivateRoute path="/pet/records/procedures">
             <h1>procedures</h1>
