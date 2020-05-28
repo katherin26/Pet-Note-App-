@@ -10,6 +10,7 @@ import {
   REQUEST_FINISHED,
   NOTIFY_USER,
   LOAD_PETS,
+  SELECT_PET,
 } from "../../store/actions";
 
 class Dashboard extends React.Component {
@@ -37,13 +38,20 @@ class Dashboard extends React.Component {
       }
   }
 
+  selectHandler(pet) {
+    const { dispatch, history } = this.props;
+    dispatch({ type: SELECT_PET, pet });
+    history.replace("/pet/records/profile");
+  }
+
   render() {
     const { loading, user, pets } = this.props;
-    console.log("GOT PETS");
-    console.log(pets);
-
     const petCards = pets.map((pet, index) => (
-      <PetCard pet={pet} key={index} />
+      <PetCard
+        pet={pet}
+        key={index}
+        selectHandler={this.selectHandler.bind(this)}
+      />
     ));
     return (
       <React.Fragment>

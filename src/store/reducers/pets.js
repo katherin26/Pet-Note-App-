@@ -24,8 +24,21 @@ function reducer(state = initialState, action) {
         next: action.next,
         selectedPet: null,
       };
-    case ADDED_PET:
     case UPDATED_PET:
+      const petIndex = state.pets.findIndex(
+        (pet) => pet.record === action.pet.record
+      );
+      if (petIndex === -1) return state;
+
+      const newPets = [...state.pets];
+      newPets.splice(petIndex, 1, action.pet);
+      localStorage.setItem("pets", JSON.stringify(newPets));
+      return {
+        ...state,
+        pets: newPets,
+        selectedPet: action.pet,
+      };
+    case ADDED_PET:
     case DELETED_PET:
       localStorage.removeItem("pets");
       return {

@@ -20,6 +20,7 @@ import ConfirmSignup from "./views/Auth/ConfirmSignup";
 import Dashboard from "./views/Dashboard/Dashboard";
 import User from "./views/Profile/User";
 import AddPet from "./views/Pets/AddPet";
+import PetRecords from "./views/Pets/PetRecords";
 
 function App({ dispatch, user, loading, notification }) {
   const appClasses = user ? "App" : "home-background";
@@ -54,8 +55,11 @@ function App({ dispatch, user, loading, notification }) {
           <PrivateRoute path="/profile">
             <User />
           </PrivateRoute>
-          <PrivateRoute path="/pets/add">
+          <PrivateRoute path="/pet/add">
             <AddPet />
+          </PrivateRoute>
+          <PrivateRoute path="/pet/records">
+            <PetRecords />
           </PrivateRoute>
         </Switch>
       </div>

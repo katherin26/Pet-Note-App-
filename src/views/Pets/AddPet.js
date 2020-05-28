@@ -13,8 +13,7 @@ import {
 
 class AddPet extends React.Component {
   async handleFormSubmit(pet) {
-    const { history, location, dispatch } = this.props;
-    const { from } = location.state || { from: { pathname: "/dashboard" } };
+    const { history, dispatch } = this.props;
 
     try {
       dispatch({ type: REQUEST_SENT });
@@ -24,7 +23,7 @@ class AddPet extends React.Component {
         type: NOTIFY_USER,
         notification: { type: "error", message: "Pet was successfully added" },
       });
-      history.replace(from);
+      history.replace("/dashboard");
     } catch (e) {
       dispatch({
         type: NOTIFY_USER,

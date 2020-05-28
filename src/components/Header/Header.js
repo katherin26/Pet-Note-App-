@@ -111,7 +111,7 @@ function Header({ dispatch, user }) {
           <div className="mx-2">
             <Link
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
-              to="/pets/add"
+              to="/pet/add"
             >
               Add Pet
             </Link>
@@ -141,7 +141,7 @@ function Header({ dispatch, user }) {
               </button>
               {showDropdown ? (
                 <ul className="dropdown-menu absolute text-gray-700 pt-1 right-0 w-full">
-                  <li on>
+                  <li>
                     <Link
                       onClick={() => setShowDropdown(false)}
                       className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"

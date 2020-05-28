@@ -1,12 +1,18 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { convertTimestampToISODate, convertDateToTimestamp } from "../../utils";
 
-export default class PetForm extends React.Component {
+class PetForm extends React.Component {
   constructor(props) {
     super(props);
     const { pet } = props;
 
-    if (pet) this.state = { ...pet };
-    else {
+    if (pet) {
+      const dob = convertTimestampToISODate(pet.dob);
+      const rabies_exp = convertTimestampToISODate(pet.rabies_exp);
+      this.state = { ...pet, dob, rabies_exp };
+    } else {
       this.state = {
         name: "",
         breed: "",
@@ -26,7 +32,9 @@ export default class PetForm extends React.Component {
   handleSubmitClick(e) {
     const { formHandler } = this.props;
     e.preventDefault();
-    formHandler({ ...this.state });
+    const dob = convertDateToTimestamp(this.state.dob);
+    const rabies_exp = convertDateToTimestamp(this.state.rabies_exp);
+    formHandler({ ...this.state, dob, rabies_exp });
   }
 
   handleInputChange(e) {
@@ -43,7 +51,7 @@ export default class PetForm extends React.Component {
   }
 
   render() {
-    const { loading } = this.props;
+    const { loading, history } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
         <div className=" w-full lg:w-1/4  rounded overflow-hidden shadow-lg ">
@@ -292,12 +300,17 @@ export default class PetForm extends React.Component {
                   <button
                     className="tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="submit"
+                    disabled={loading}
                   >
                     <span className="tooltiptext">Submit</span>
 
                     <i className="fas fa-check-double"></i>
                   </button>
-                  <button className="tooltip mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                  <button
+                    type="button"
+                    onClick={() => history.goBack()}
+                    className="tooltip mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  >
                     <span className="tooltiptext">Cancel</span>
 
                     <i className="fas fa-times"></i>
@@ -311,3 +324,9 @@ export default class PetForm extends React.Component {
     );
   }
 }
+
+PetForm.propTypes = {
+  history: PropTypes.object.isRequired,
+};
+
+export default withRouter(PetForm);
