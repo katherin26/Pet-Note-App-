@@ -57,3 +57,23 @@ export async function updateProcedure(petId, procedureId, procedure) {
 export async function deleteProcedure(petId, procedureId) {
   return API.del("PetNote", `/pets/${petId}/procedures/${procedureId}`);
 }
+
+export async function getGrooming(petId) {
+  return API.get("PetNote", `/pets/${petId}/grooming`);
+}
+
+export async function createGrooming(petId, grooming) {
+  const payload = { ...grooming };
+  return API.post("PetNote", `/pets/${petId}/grooming`, { body: payload });
+}
+
+export async function updateGrooming(petId, groomingId, grooming) {
+  const payload = { ...grooming };
+  return API.patch("PetNote", `/pets/${petId}/grooming/${groomingId}`, {
+    body: payload,
+  });
+}
+
+export async function deleteGrooming(petId, groomingId) {
+  return API.del("PetNote", `/pets/${petId}/grooming/${groomingId}`);
+}
