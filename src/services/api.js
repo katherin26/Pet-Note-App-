@@ -97,3 +97,7 @@ export async function updatePetNote(petId, reminderId, reminder) {
 export async function deletePetNote(petId, reminderId) {
   return API.del("PetNote", `/pets/${petId}/reminders/${reminderId}`);
 }
+
+export async function getTimeline(petId) {
+  return API.get("PetNote", `/pets/${petId}/timeline`);
+}

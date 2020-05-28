@@ -9,6 +9,7 @@ import Vaccinations from "../Vaccinations/Vaccionations";
 import Procedures from "../Procedures/Procedures";
 import Grooming from "../Grooming/Grooming";
 import PetNotes from "../PetNotes/PetNotes";
+import Timeline from "../Timeline/Timeline";
 import { updatePet } from "../../services/api";
 import {
   REQUEST_SENT,
@@ -144,8 +145,8 @@ class PetRecords extends React.Component {
           <PrivateRoute path="/pet/records/petnotes">
             <PetNotes />
           </PrivateRoute>
-          <PrivateRoute path="/pet/records/timline">
-            <h1>timeline</h1>
+          <PrivateRoute path="/pet/records/timeline">
+            <Timeline />
           </PrivateRoute>
         </Switch>
       </React.Fragment>
