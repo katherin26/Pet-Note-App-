@@ -77,3 +77,23 @@ export async function updateGrooming(petId, groomingId, grooming) {
 export async function deleteGrooming(petId, groomingId) {
   return API.del("PetNote", `/pets/${petId}/grooming/${groomingId}`);
 }
+
+export async function getPetNotes(petId) {
+  return API.get("PetNote", `/pets/${petId}/reminders`);
+}
+
+export async function createPetNote(petId, reminder) {
+  const payload = { ...reminder, done: false };
+  return API.post("PetNote", `/pets/${petId}/reminders`, { body: payload });
+}
+
+export async function updatePetNote(petId, reminderId, reminder) {
+  const payload = { ...reminder };
+  return API.patch("PetNote", `/pets/${petId}/reminders/${reminderId}`, {
+    body: payload,
+  });
+}
+
+export async function deletePetNote(petId, reminderId) {
+  return API.del("PetNote", `/pets/${petId}/reminders/${reminderId}`);
+}

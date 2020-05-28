@@ -8,6 +8,7 @@ import PetForm from "../../components/Pets/PetForm";
 import Vaccinations from "../Vaccinations/Vaccionations";
 import Procedures from "../Procedures/Procedures";
 import Grooming from "../Grooming/Grooming";
+import PetNotes from "../PetNotes/PetNotes";
 import { updatePet } from "../../services/api";
 import {
   REQUEST_SENT,
@@ -101,7 +102,7 @@ class PetRecords extends React.Component {
             <NavLink
               className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
               activeClassName="shadow-md"
-              to="/pet/records/pet-notes"
+              to="/pet/records/petnotes"
             >
               Pet-Notes
             </NavLink>
@@ -140,8 +141,8 @@ class PetRecords extends React.Component {
           <PrivateRoute path="/pet/records/grooming">
             <Grooming />
           </PrivateRoute>
-          <PrivateRoute path="/pet/records/pet-notes">
-            <h1>Pet notes</h1>
+          <PrivateRoute path="/pet/records/petnotes">
+            <PetNotes />
           </PrivateRoute>
           <PrivateRoute path="/pet/records/timline">
             <h1>timeline</h1>
