@@ -61,7 +61,7 @@ class PetRecords extends React.Component {
     const { loading, user, selectedPet } = this.props;
 
     return (
-      <div class="mt-5">
+      <div className="mt-5">
         <ul className="flex border-b-2 text-teal-800 overflow-scroll">
           <li className="mr-1">
             <NavLink

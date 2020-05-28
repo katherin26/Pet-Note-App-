@@ -81,7 +81,7 @@ export default function PetNoteCards({
   return (
     <div className="flex justify-center items-center w-full h-full ">
       <div className="w-11/12 rounded overflow-hidden shadow-lg mt-4">
-        <div className="m-4 p-2 flex items-center justify-end">
+        <div className="p-2 flex items-center justify-end">
           <Link
             to="/pet/records/petnotes/add"
             className="tooltip m-4  bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-lg"

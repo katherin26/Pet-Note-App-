@@ -6,7 +6,7 @@ export default function PetInfo({ pet }) {
   return (
     <div className="flex justify-center items-center w-full h-full ">
       <div className="w-11/12 rounded overflow-hidden shadow-lg mt-4 ">
-        <div className="m-4 p-2 flex items-center justify-end pt-2 ">
+        <div className="p-2 flex items-center justify-end pt-2 ">
           <Link
             to="/pet/records/profile/update"
             className=" m-4 p-2 bg-orange-300 hover:bg-orange-400 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-md"
