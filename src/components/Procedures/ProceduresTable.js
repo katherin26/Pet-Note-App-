@@ -2,36 +2,33 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { convertTimestampToDate } from "../../utils";
 
-export default function VaccinationsTable({
-  vaccinations,
+export default function ProceduresTable({
+  procedures,
   clickOnEditHandler,
   clickOnDeleteHandler,
 }) {
-  const tableRows = vaccinations.map((vac, index) => (
+  const tableRows = procedures.map((procedure, index) => (
     <tr key={index}>
-      <td className="border px-4 py-2 text-center">{vac.name}</td>
+      <td className="border px-4 py-2 text-center">{procedure.name}</td>
       <td className="border px-4 py-2 text-center">
-        {convertTimestampToDate(vac.date)}
+        {convertTimestampToDate(procedure.date)}
       </td>
-      <td className="border px-4 py-2 text-center">{vac.location}</td>
+      <td className="border px-4 py-2 text-center">{procedure.location}</td>
       <td className="border px-4 py-2 text-center">
-        {convertTimestampToDate(vac.expiration)}
+        ${procedure.cost ? procedure.cost : 0}
       </td>
-      <td className="border px-4 py-2 text-center">
-        ${vac.cost ? vac.cost : 0}
-      </td>
-      <td className="border px-4 py-2 text-center">{vac.comments}</td>
+      <td className="border px-4 py-2 text-center">{procedure.comments}</td>
       <td className="border px-4 py-2 text-center">
         <button
           className="tooltip bg-orange-300 hover:bg-orange-400 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
-          onClick={() => clickOnEditHandler(vac)}
+          onClick={() => clickOnEditHandler(procedure)}
         >
           <i className="fas fa-pen-alt"></i>
           <span className="tooltiptext">Edit</span>
         </button>{" "}
         <button
           className="tooltip bg-red-400 hover:bg-red-500 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
-          onClick={() => clickOnDeleteHandler(vac)}
+          onClick={() => clickOnDeleteHandler(procedure)}
         >
           <i className="far fa-trash-alt"></i>
           <span className="tooltiptext">Remove</span>
@@ -45,7 +42,7 @@ export default function VaccinationsTable({
       <div className="w-11/12 rounded overflow-hidden shadow-lg ">
         <div className="flex items-center justify-end">
           <Link
-            to="/pet/records/vaccinations/add"
+            to="/pet/records/procedures/add"
             className="tooltip m-4 p-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           >
             <span className="tooltiptext">Add</span>
@@ -61,9 +58,6 @@ export default function VaccinationsTable({
                   <th className="px-4 py-2 text-teal-800 font-bold">DATE</th>
                   <th className="px-4 py-2 text-teal-800 font-bold">
                     LOCATION
-                  </th>
-                  <th className="px-4 py-2 text-teal-800 font-bold">
-                    DATE DUE
                   </th>
                   <th className="px-4 py-2 text-teal-800 font-bold">COST</th>
                   <th className="px-4 py-2 text-teal-800 font-bold">

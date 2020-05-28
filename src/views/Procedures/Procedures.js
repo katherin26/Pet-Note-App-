@@ -3,45 +3,45 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withRouter, Switch } from "react-router-dom";
 import PrivateRoute from "../../components/Router/PrivateRoute";
-import VaccinationsTable from "../../components/Vaccinations/VaccinationsTable";
-import VaccinationForm from "../../components/Vaccinations/VaccinationForm";
+import ProceduresTable from "../../components/Procedures/ProceduresTable";
+import ProcedureForm from "../../components/Procedures/ProcedureForm";
 import {
-  getVaccinations,
-  createVaccination,
-  updateVaccination,
-  deleteVaccination,
+  getProcedures,
+  createProcedure,
+  updateProcedure,
+  deleteProcedure,
 } from "../../services/api";
 import {
   REQUEST_SENT,
   REQUEST_FINISHED,
   NOTIFY_USER,
-  LOAD_VACCINATIONS,
-  ADDED_VACCINATION,
-  UPDATED_VACCINATION,
-  DELETED_VACCINATION,
-  SELECT_VACCINATION,
+  LOAD_PROCEDURES,
+  ADDED_PROCEDURE,
+  UPDATED_PROCEDURE,
+  DELETED_PROCEDURE,
+  SELECT_PROCEDURE,
 } from "../../store/actions";
 
-class Vaccinations extends React.Component {
+class Procedures extends React.Component {
   async componentWillMount() {
-    const { selectedPet, vaccinations, history } = this.props;
+    const { selectedPet, procedures, history } = this.props;
 
     if (!selectedPet) return history.replace("/dashboard");
 
-    if (vaccinations.length) return;
+    if (procedures.length) return;
 
-    await this.fetchVaccinations();
+    await this.fetchProcedures();
   }
 
-  async fetchVaccinations() {
+  async fetchProcedures() {
     const { dispatch, selectedPet } = this.props;
     const [, petId] = selectedPet.record.split("/");
     try {
       dispatch({ type: REQUEST_SENT });
-      const response = await getVaccinations(petId);
+      const response = await getProcedures(petId);
       dispatch({
-        type: LOAD_VACCINATIONS,
-        vaccinations: response.vaccinations,
+        type: LOAD_PROCEDURES,
+        procedures: response.procedures,
         next: response.next,
       });
     } catch (e) {
@@ -57,28 +57,28 @@ class Vaccinations extends React.Component {
     }
   }
 
-  clickOnEditHandler(vaccination) {
+  clickOnEditHandler(procedure) {
     const { dispatch, history } = this.props;
-    dispatch({ type: SELECT_VACCINATION, vaccination });
-    history.replace("/pet/records/vaccinations/update");
+    dispatch({ type: SELECT_PROCEDURE, procedure });
+    history.replace("/pet/records/procedures/update");
   }
 
-  async handleVaccinationCreation(vaccination) {
+  async handleProcedureCreation(procedure) {
     const { history, dispatch, selectedPet } = this.props;
     const [, petId] = selectedPet.record.split("/");
     try {
       dispatch({ type: REQUEST_SENT });
-      await createVaccination(petId, vaccination);
-      dispatch({ type: ADDED_VACCINATION });
+      await createProcedure(petId, procedure);
+      dispatch({ type: ADDED_PROCEDURE });
       dispatch({
         type: NOTIFY_USER,
         notification: {
           type: "error",
-          message: "Vaccination was successfully added",
+          message: "Procedure was successfully added",
         },
       });
-      history.replace("/pet/records/vaccinations");
-      await this.fetchVaccinations();
+      history.replace("/pet/records/procedures");
+      await this.fetchProcedures();
     } catch (e) {
       dispatch({
         type: NOTIFY_USER,
@@ -95,24 +95,24 @@ class Vaccinations extends React.Component {
     }
   }
 
-  async handleVaccinationUpdate(vaccination) {
-    const [, vaccinationId] = vaccination.record.split("/");
+  async handleProcedureUpdate(procedure) {
+    const [, procedureId] = procedure.record.split("/");
     const { history, dispatch, selectedPet } = this.props;
     const [, petId] = selectedPet.record.split("/");
 
     try {
       dispatch({ type: REQUEST_SENT });
-      await updateVaccination(petId, vaccinationId, vaccination);
-      dispatch({ type: UPDATED_VACCINATION });
+      await updateProcedure(petId, procedureId, procedure);
+      dispatch({ type: UPDATED_PROCEDURE });
       dispatch({
         type: NOTIFY_USER,
         notification: {
           type: "error",
-          message: "Vaccination was successfully updated",
+          message: "Procedure was successfully updated",
         },
       });
-      history.replace("/pet/records/vaccinations");
-      await this.fetchVaccinations();
+      history.replace("/pet/records/procedures");
+      await this.fetchProcedures();
     } catch (e) {
       dispatch({
         type: NOTIFY_USER,
@@ -129,24 +129,24 @@ class Vaccinations extends React.Component {
     }
   }
 
-  async handleVaccinationDeletion(vaccination) {
-    const [, vaccinationId] = vaccination.record.split("/");
+  async handleProcedureDeletion(procedure) {
+    const [, procedureId] = procedure.record.split("/");
     const { history, dispatch, selectedPet } = this.props;
     const [, petId] = selectedPet.record.split("/");
 
     try {
       dispatch({ type: REQUEST_SENT });
-      await deleteVaccination(petId, vaccinationId);
-      dispatch({ type: DELETED_VACCINATION });
+      await deleteProcedure(petId, procedureId);
+      dispatch({ type: DELETED_PROCEDURE });
       dispatch({
         type: NOTIFY_USER,
         notification: {
           type: "error",
-          message: "Vaccination was successfully deleted",
+          message: "Procedure was successfully deleted",
         },
       });
-      history.replace("/pet/records/vaccinations");
-      await this.fetchVaccinations();
+      history.replace("/pet/records/procedures");
+      await this.fetchProcedures();
     } catch (e) {
       dispatch({
         type: NOTIFY_USER,
@@ -164,28 +164,28 @@ class Vaccinations extends React.Component {
   }
 
   render() {
-    const { loading, user, selectedVaccination, vaccinations } = this.props;
+    const { loading, user, selectedProcedure, procedures } = this.props;
 
     return (
       <React.Fragment>
         <Switch>
-          <PrivateRoute exact path="/pet/records/vaccinations">
-            <VaccinationsTable
-              vaccinations={vaccinations}
+          <PrivateRoute exact path="/pet/records/procedures">
+            <ProceduresTable
+              procedures={procedures}
               clickOnEditHandler={this.clickOnEditHandler.bind(this)}
-              clickOnDeleteHandler={this.handleVaccinationDeletion.bind(this)}
+              clickOnDeleteHandler={this.handleProcedureDeletion.bind(this)}
             />
           </PrivateRoute>
-          <PrivateRoute exact path="/pet/records/vaccinations/add">
-            <VaccinationForm
-              formHandler={this.handleVaccinationCreation.bind(this)}
+          <PrivateRoute exact path="/pet/records/procedures/add">
+            <ProcedureForm
+              formHandler={this.handleProcedureCreation.bind(this)}
               loading={loading}
             />
           </PrivateRoute>
-          <PrivateRoute exact path="/pet/records/vaccinations/update">
-            <VaccinationForm
-              vaccination={selectedVaccination}
-              formHandler={this.handleVaccinationUpdate.bind(this)}
+          <PrivateRoute exact path="/pet/records/procedures/update">
+            <ProcedureForm
+              procedure={selectedProcedure}
+              formHandler={this.handleProcedureUpdate.bind(this)}
               loading={loading}
             />
           </PrivateRoute>
@@ -195,11 +195,11 @@ class Vaccinations extends React.Component {
   }
 }
 
-Vaccinations.propTypes = {
+Procedures.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool,
-  selectedVaccination: PropTypes.object,
-  vaccinations: PropTypes.array,
+  selectedProcedure: PropTypes.object,
+  procedures: PropTypes.array,
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
@@ -207,9 +207,9 @@ Vaccinations.propTypes = {
 
 function mapStateToProps(state) {
   const { loading } = state.app;
-  const { selectedVaccination, vaccinations } = state.vaccinations;
+  const { selectedProcedure, procedures } = state.procedures;
   const { selectedPet } = state.pets;
-  return { loading, selectedVaccination, vaccinations, selectedPet };
+  return { loading, selectedProcedure, procedures, selectedPet };
 }
 
-export default connect(mapStateToProps)(withRouter(Vaccinations));
+export default connect(mapStateToProps)(withRouter(Procedures));

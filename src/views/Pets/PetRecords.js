@@ -6,6 +6,7 @@ import PrivateRoute from "../../components/Router/PrivateRoute";
 import PetProfile from "../../components/Pets/PetProfile";
 import PetForm from "../../components/Pets/PetForm";
 import Vaccinations from "../Vaccinations/Vaccionations";
+import Procedures from "../Procedures/Procedures";
 import { updatePet } from "../../services/api";
 import {
   REQUEST_SENT,
@@ -133,7 +134,7 @@ class PetRecords extends React.Component {
             <Vaccinations />
           </PrivateRoute>
           <PrivateRoute path="/pet/records/procedures">
-            <h1>procedures</h1>
+            <Procedures />
           </PrivateRoute>
           <PrivateRoute path="/pet/records/grooming">
             <h1>grooming</h1>

@@ -37,3 +37,23 @@ export async function updateVaccination(petId, vaccinationId, vaccination) {
 export async function deleteVaccination(petId, vaccinationId) {
   return API.del("PetNote", `/pets/${petId}/vaccinations/${vaccinationId}`);
 }
+
+export async function getProcedures(petId) {
+  return API.get("PetNote", `/pets/${petId}/procedures`);
+}
+
+export async function createProcedure(petId, procedure) {
+  const payload = { ...procedure };
+  return API.post("PetNote", `/pets/${petId}/procedures`, { body: payload });
+}
+
+export async function updateProcedure(petId, procedureId, procedure) {
+  const payload = { ...procedure };
+  return API.patch("PetNote", `/pets/${petId}/procedures/${procedureId}`, {
+    body: payload,
+  });
+}
+
+export async function deleteProcedure(petId, procedureId) {
+  return API.del("PetNote", `/pets/${petId}/procedures/${procedureId}`);
+}
