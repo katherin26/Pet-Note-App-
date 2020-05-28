@@ -9,9 +9,9 @@ export default function PetNoteCards({
   clickOnDeleteHandler,
 }) {
   const petNoteCards = petnotes.map((petnote, index) => (
-    <div key={index} className="flex-row">
-      <div className="w-1/2 m-8 rounded overflow-hidden shadow-lg">
-        <div className="flex w-full pr-2 pl-2 overflow-hidden  bg-orange-100">
+    <div key={index} className="flex w-full sm:w-1/4">
+      <div className="w-full m-8 rounded overflow-hidden shadow-lg">
+        <div className="flex w-full pr-2 pl-2 overflow-hidden bg-orange-100">
           <div className="divide-y divide-gray-400 w-full">
             <div className="flex">
               <div className="py-2 w-1/2 text-right pr-5  text-teal-800 font-bold">
@@ -80,18 +80,18 @@ export default function PetNoteCards({
 
   return (
     <div className="flex justify-center items-center w-full h-full ">
-      <div className="w-11/12 rounded overflow-hidden shadow-lg ">
-        <div className="flex items-center justify-end">
+      <div className="w-11/12 rounded overflow-hidden shadow-lg mt-4">
+        <div className="m-4 p-2 flex items-center justify-end">
           <Link
             to="/pet/records/petnotes/add"
-            className="tooltip m-4  bg-teal-400 hover:bg-teal-500 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"
+            className="tooltip m-4  bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-lg"
           >
             <span className="tooltiptext">Add</span>
 
             <i className="fas fa-plus"></i>
           </Link>
         </div>
-        {petNoteCards}
+        <div className="flex flex-wrap w-full h-full">{petNoteCards}</div>
       </div>
     </div>
   );

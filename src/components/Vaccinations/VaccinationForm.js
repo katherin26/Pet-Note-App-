@@ -41,7 +41,7 @@ class VaccinationForm extends React.Component {
     return (
       <div className="flex justify-center items-center w-full h-full">
         <form
-          className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2"
+          className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2 mt-10 "
           onSubmit={this.handleSubmitClick.bind(this)}
         >
           <div className="w-full ">

@@ -18,14 +18,14 @@ class User extends React.Component {
     return (
       <React.Fragment>
         <div className="flex justify-center items-center w-full h-full mt-1">
-          <div className=" w-3/4 sm:w-full md:w-2/4 lg:3/4 rounded overflow-hidden shadow-lg ">
+          <div className="w-3/4 sm:w-full md:w-2/4 lg:3/4 rounded overflow-hidden shadow-lg ">
             <h1 className="block uppercase tracking-wide text-teal-800 font-bold text-center p-2">
               PROFILE
             </h1>
 
             <div className="border-t-2 border-gray-300 pt-5 ">
               <div className="w-full flex flex-wrap w-full justify-center items-center">
-                <div className=" flex-col">
+                <div className="flex-col">
                   <img
                     className=" w-1/2  mx-auto  border shadow-md rounded-full"
                     src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"

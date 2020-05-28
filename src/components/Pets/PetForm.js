@@ -54,9 +54,9 @@ class PetForm extends React.Component {
     const { loading, history } = this.props;
     return (
       <div className="flex justify-center items-center w-full h-full">
-        <div className=" w-full lg:w-1/4  rounded overflow-hidden shadow-lg ">
+        <div className=" w-full lg:w-2/5  rounded overflow-hidden shadow-lg mt-10 ">
           <img
-            className=" w-1/3  mx-auto  border shadow-md rounded-full"
+            className=" w-1/4  mx-auto  border shadow-md rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
           />
           <div className=" w-full px-6 py-4">
@@ -298,7 +298,7 @@ class PetForm extends React.Component {
                 </div>
                 <div className="flex items-center justify-start">
                   <button
-                    className="tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="tooltip mt-2 mr-2 bg-teal-400 hover:bg-teal-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-md"
                     type="submit"
                     disabled={loading}
                   >
@@ -309,7 +309,7 @@ class PetForm extends React.Component {
                   <button
                     type="button"
                     onClick={() => history.goBack()}
-                    className="tooltip mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="tooltip mt-2 bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline shadow-md"
                   >
                     <span className="tooltiptext">Cancel</span>
 

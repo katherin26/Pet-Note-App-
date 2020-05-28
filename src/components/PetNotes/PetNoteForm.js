@@ -35,7 +35,7 @@ class PetNoteForm extends React.Component {
   render() {
     const { loading, history } = this.props;
     return (
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex justify-center items-center w-full h-full mt-10 ">
         <form
           className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4 lg:w-1/4 md:w-1/3 sm:w-1/2"
           onSubmit={this.handleSubmitClick.bind(this)}
@@ -53,7 +53,7 @@ class PetNoteForm extends React.Component {
               type="text"
               value={this.state.name}
               onChange={this.handleInputChange.bind(this)}
-              placeholder="e.g. Bordetella"
+              placeholder="e.g. Buy Treats "
               required
             />
           </div>
