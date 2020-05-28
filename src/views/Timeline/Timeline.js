@@ -50,7 +50,15 @@ class Timeline extends React.Component {
     const { loading, timeline } = this.props;
 
     const timelineCards = timeline.map((event, index) => {
-      const [cardTitle] = event.record.split("/");
+      const [cardType] = event.record.split("/");
+      const cardIcons = {
+        pet: "fas fa-dog",
+        vaccination: "fas fa-syringe",
+        procedure: "fas fa-notes-medical",
+        grooming: "fas fa-cut",
+        reminder: "fas fa-comment-dots",
+      };
+
       return (
         <div className="flex flex-wrap border" key={index}>
           <div className="w-1/2 md:w-1/2 m-8 rounded overflow-hidden shadow-lg">
@@ -58,10 +66,10 @@ class Timeline extends React.Component {
               <div className="divide-y divide-gray-400 w-full">
                 <div className="flex">
                   <div className="pl-5 pt-2 pr-2 ">
-                    <i className="fas fa-syringe"></i>
+                    <i className={cardIcons[cardType]}></i>
                   </div>
                   <h1 className="pr-5 pt-2 pb-2 text-teal-800 font-bold uppercase">
-                    {cardTitle === "pet" ? `ADDED PET` : cardTitle}
+                    {cardType === "pet" ? `ADDED PET` : cardType}
                   </h1>
                 </div>
 
