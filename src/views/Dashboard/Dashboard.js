@@ -66,9 +66,7 @@ class Dashboard extends React.Component {
             ></img>
           </div>
         </div>
-        <div className="flex flex-wrap w-full justify-center px-6 py-6">
-          {petCards}
-        </div>
+        <div className="flex flex-wrap w-full  px-6 py-6">{petCards}</div>
       </React.Fragment>
     );
   }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function PetCard({ pet, selectHandler }) {
   return (
-    <div className="flex justify-center w-full h-auto sm:w-1/4 md:w-1/3 lg:w-1/3 mt-5 pr-10 pl-10">
+    <div className="flex justify-center w-full h-auto sm:w-1/2  md:w-1/3 lg:w-1/4  p-5">
       <div className="bg-white md:max-w-screen-sm min-w-0 p-5 border rounded-lg overflow-hidden shadow-lg transition ease-in-out duration-500 transform hover:scale-110">
         <img
           className="w-1/2 lg:w-2/5 mx-auto border shadow-lg rounded-full"

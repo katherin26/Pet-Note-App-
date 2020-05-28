@@ -61,12 +61,12 @@ class PetRecords extends React.Component {
     const { loading, user, selectedPet } = this.props;
 
     return (
-      <React.Fragment>
-        <ul className="flex border">
+      <div class="mt-5">
+        <ul className="flex border-b-2 text-teal-800 ">
           <li className="-mb-px mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/profile"
             >
               Pet Profile
@@ -74,8 +74,8 @@ class PetRecords extends React.Component {
           </li>
           <li className="mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/vaccinations"
             >
               Vaccinations
@@ -83,8 +83,8 @@ class PetRecords extends React.Component {
           </li>
           <li className="mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/procedures"
             >
               Procedures
@@ -92,8 +92,8 @@ class PetRecords extends React.Component {
           </li>
           <li className="mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/grooming"
             >
               Grooming
@@ -101,8 +101,8 @@ class PetRecords extends React.Component {
           </li>
           <li className="mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/petnotes"
             >
               Pet-Notes
@@ -110,8 +110,8 @@ class PetRecords extends React.Component {
           </li>
           <li className="mr-1">
             <NavLink
-              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 text-teal-800 font-bold"
-              activeClassName="shadow-md"
+              className="bg-white inline-block border border-gray-400 rounded-t-lg px-4 py-2 font-bold"
+              activeClassName="bg-teal-500 text-white shadow-md"
               to="/pet/records/timeline"
             >
               Timeline
@@ -149,7 +149,7 @@ class PetRecords extends React.Component {
             <Timeline />
           </PrivateRoute>
         </Switch>
-      </React.Fragment>
+      </div>
     );
   }
 }

@@ -15,7 +15,7 @@ function Header({ dispatch, user }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const history = useHistory();
   let headerClasses = "flex items-center justify-between flex-wrap ";
-  headerClasses += !user ? "bg-transparent p-6" : "bg-teal-600";
+  headerClasses += !user ? "bg-transparent p-6" : "bg-teal-600 p-2";
   const logOutClickHandler = async (e) => {
     e.preventDefault();
     try {
@@ -121,7 +121,7 @@ function Header({ dispatch, user }) {
         )}
 
         {user ? (
-          <div className="p-5">
+          <div className="mx-2">
             <div
               className="dropdown inline-block relative"
               onMouseLeave={() => setShowDropdown(false)}
