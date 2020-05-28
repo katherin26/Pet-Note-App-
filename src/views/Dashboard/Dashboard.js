@@ -2,16 +2,49 @@ import React from "react";
 import "./Dashboard.css";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import PetCard from "../../components/Pets/PetCard";
+import { getPets } from "../../services/api";
 import {
   REQUEST_SENT,
   REQUEST_FINISHED,
   NOTIFY_USER,
+  LOAD_PETS,
 } from "../../store/actions";
 
 class Dashboard extends React.Component {
+  async componentDidMount() {
+    const { dispatch, pets } = this.props;
+
+    if (pets.length) return;
+
+    if (this)
+      try {
+        dispatch({ type: REQUEST_SENT });
+        const response = await getPets();
+        dispatch({ type: LOAD_PETS, pets: response.pets, next: response.next });
+      } catch (e) {
+        console.log(e.message);
+        dispatch({
+          type: NOTIFY_USER,
+          notification: {
+            type: "error",
+            message: e.message,
+          },
+        });
+      } finally {
+        dispatch({ type: REQUEST_FINISHED });
+      }
+  }
+
   render() {
-    const { loading, user } = this.props;
+    const { loading, user, pets } = this.props;
+    console.log("GOT PETS");
+    console.log(pets);
+
+    const petCards = pets.map((pet, index) => (
+      <PetCard pet={pet} key={index} />
+    ));
     return (
       <React.Fragment>
         <div className="flex justify-center p-3 kt_dashboard_banner">
@@ -27,47 +60,7 @@ class Dashboard extends React.Component {
             ></img>
           </div>
         </div>
-        <div className="flex justify-center px-6 py-6">
-          <div className="kt_container_card mx-6">
-            <div className="kt_profile_card">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
-                alt="image1"
-                className="profile-icon"
-              />
-              <div className="kt_profile_card_name">Pet name</div>
-              <a href="#" className="button_card">
-                Profile
-              </a>
-            </div>
-          </div>
-          <div className="kt_container_card mx-6">
-            <div className="kt_profile_card">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
-                alt="image1"
-                className="profile-icon"
-              />
-              <div className="kt_profile_card_name">Pet name</div>
-              <a href="#" className="button_card">
-                Profile
-              </a>
-            </div>
-          </div>
-          <div className="kt_container_card mx-6">
-            <div className="kt_profile_card">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
-                alt="image1"
-                className="profile-icon"
-              />
-              <div className="kt_profile_card_name">Pet name</div>
-              <a href="#" className="button_card">
-                Profile
-              </a>
-            </div>
-          </div>
-        </div>
+        <div className="flex justify-center px-6 py-6">{petCards}</div>
       </React.Fragment>
     );
   }
@@ -77,13 +70,15 @@ Dashboard.propTypes = {
   dispatch: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   user: PropTypes.object,
+  pets: PropTypes.array.isRequired,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
   const { loading, user } = state.app;
-  return { loading, user };
+  const { pets } = state.pets;
+  return { loading, user, pets };
 }
 
 export default connect(mapStateToProps)(withRouter(Dashboard));

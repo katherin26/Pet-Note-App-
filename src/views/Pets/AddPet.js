@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { createPet } from "../../services/api";
 import PetForm from "../../components/Pets/PetForm";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import {
   REQUEST_SENT,
   REQUEST_FINISHED,
@@ -17,6 +17,7 @@ class AddPet extends React.Component {
     const { from } = location.state || { from: { pathname: "/dashboard" } };
 
     try {
+      dispatch({ type: REQUEST_SENT });
       await createPet(pet);
       dispatch({ type: ADDED_PET });
       dispatch({
@@ -25,7 +26,6 @@ class AddPet extends React.Component {
       });
       history.replace(from);
     } catch (e) {
-      console.log(e.response);
       dispatch({
         type: NOTIFY_USER,
         notification: {

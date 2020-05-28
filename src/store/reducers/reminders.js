@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
     case LOAD_REMINDERS:
       localStorage.setItem(
         "reminders",
-        state.reminders.concat(action.reminders)
+        JSON.stringify(state.reminders.concat(action.reminders))
       );
       return {
         reminders: state.reminders.concat(action.reminders),

@@ -8,7 +8,10 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_TIMELINE:
-      localStorage.setItem("timeline", state.timeline.concat(action.timeline));
+      localStorage.setItem(
+        "timeline",
+        JSON.stringify(state.timeline.concat(action.timeline))
+      );
       return {
         timeline: state.timeline.concat(action.timeline),
         next: action.next,

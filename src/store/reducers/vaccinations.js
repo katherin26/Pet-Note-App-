@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
     case LOAD_VACCINATIONS:
       localStorage.setItem(
         "vaccinations",
-        state.vaccinations.concat(action.vaccinations)
+        JSON.stringify(state.vaccinations.concat(action.vaccinations))
       );
       return {
         vaccinations: state.vaccinations.concat(action.vaccinations),

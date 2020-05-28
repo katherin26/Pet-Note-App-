@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
     case LOAD_PROCEDURES:
       localStorage.setItem(
         "procedures",
-        state.procedures.concat(action.procedures)
+        JSON.stringify(state.procedures.concat(action.procedures))
       );
       return {
         procedures: state.procedures.concat(action.procedures),

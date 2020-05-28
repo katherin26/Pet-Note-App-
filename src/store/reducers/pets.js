@@ -15,7 +15,10 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_PETS:
-      localStorage.setItem("pets", state.pets.concat(action.pets));
+      localStorage.setItem(
+        "pets",
+        JSON.stringify(state.pets.concat(action.pets))
+      );
       return {
         pets: state.pets.concat(action.pets),
         next: action.next,
