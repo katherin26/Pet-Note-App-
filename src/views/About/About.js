@@ -21,7 +21,7 @@ export default function About() {
           <div className="flex w-full md:w-1/2 h-full p-2">
             <img
               className="w-4/5 h-full mx-auto  border shadow-lg rounded"
-              src={"kate3.jpg"}
+              src={"kate3-min.jpg"}
             />
           </div>
         </div>
@@ -30,7 +30,7 @@ export default function About() {
           <div className="flex  w-full md:w-1/2 h-full p-2  order-last sm:order-first md:order-none lg:order-first ">
             <img
               className="w-4/5 h-full mx-auto  border shadow-lg rounded"
-              src={"isaacadaandjill.jpg"}
+              src={"iaj-min.jpg"}
             />
           </div>
 
@@ -66,7 +66,7 @@ export default function About() {
           <div className="flex  w-full md:w-1/2 h-full p-2">
             <img
               className="w-4/5 h-full mx-auto  border shadow-lg rounded"
-              src="https://s03.s3c.es/imag/_v0/770x420/0/7/2/MTP-cortesia-3.jpg"
+              src={"download-min.jpg"}
             />
           </div>
         </div>
