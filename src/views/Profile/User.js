@@ -27,8 +27,8 @@ class User extends React.Component {
               <div className="w-full flex flex-wrap w-full justify-center items-center">
                 <div className="flex-col">
                   <img
-                    className=" w-1/2  mx-auto  border shadow-md rounded-full"
-                    src="https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                    className=" w-1/3  mx-auto  border shadow-md rounded-full"
+                    src="https://media1.tenor.com/images/a403ab437cabe6b1d988cd7a74ffa046/tenor.gif?itemid=14477191"
                   />
                 </div>
 
