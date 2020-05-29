@@ -53,7 +53,7 @@ export default function VaccinationsTable({
           </Link>
         </div>
         <div className="flex justify-center items-center">
-          <div className="flex justify-center items-center w-11/12 rounded overflow-hidden shadow-lg  m-8 ">
+          <div className="flex justify-center items-center w-11/12 rounded overflow-hidden shadow-lg  m-8 overflow-x-auto">
             <table className=" w-full table-auto">
               <thead>
                 <tr>

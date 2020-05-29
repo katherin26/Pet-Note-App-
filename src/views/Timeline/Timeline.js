@@ -60,8 +60,11 @@ class Timeline extends React.Component {
       };
 
       return (
-        <div className="flex flex-wrap border" key={index}>
-          <div className="w-1/2 md:w-1/2 m-8 rounded overflow-hidden shadow-lg">
+        <div
+          className="flex w-full sm:w-full lg:w-1/4 justify-center items-center "
+          key={index}
+        >
+          <div className="w-full md:w-1/2 m-8 rounded overflow-hidden shadow-lg">
             <div className="flex w-full pr-2 pl-2 overflow-hidden  bg-orange-100">
               <div className="divide-y divide-gray-400 w-full">
                 <div className="flex">
@@ -105,7 +108,20 @@ class Timeline extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="flex ">{timelineCards}</div>
+        <div class="flex flex-wrap justify-center items-center w-full h-full">
+          <div class="w-full flex-wrap rounded overflow-hidden shadow-lg ">
+            <div class="divide-y divide-gray-400 m-5 shadow-sm">
+              <div class="flex justify-center items-center p-5 uppercase">
+                <h1 class="w-full text-center text-teal-800 font-bold ">
+                  TIMELINE
+                </h1>
+              </div>
+            </div>
+            <div class="flex flex-wrap w-full justify-center items-center">
+              {timelineCards}
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
