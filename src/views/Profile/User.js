@@ -50,7 +50,7 @@ class User extends React.Component {
                         {user.attributes.family_name}
                       </div>
                     </div>
-                    <div className="flex-wrap w-full">
+                    <div className="flex flex-wrap w-full">
                       <div className="py-2 sm:pr-5 w-full sm:w-1/2 text-center sm:text-right text-teal-800 font-bold">
                         Email:
                       </div>
