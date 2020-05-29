@@ -13,7 +13,7 @@ export default function About() {
               <p className="text-justify text-white m-5 ">
                 Pet-Note created by <strong>Katherin Ochoa</strong> , Pet Parent
                 of two dogs and one Guinea Pig, Inspired by the most effective
-                way to track the pet's health information.
+                way to track my pet's health information.
               </p>
             </div>
           </div>
