@@ -13,9 +13,15 @@ import {
 
 function Header({ dispatch, user }) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [hamburgerMenu, setHamburgerMenu] = useState(false);
   const history = useHistory();
   let headerClasses = "flex items-center justify-between flex-wrap ";
   headerClasses += !user ? "bg-transparent p-6" : "bg-teal-600 p-2";
+  let menuClasses =
+    "w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto";
+
+  if (!hamburgerMenu) menuClasses += " hidden";
+
   const logOutClickHandler = async (e) => {
     e.preventDefault();
     try {
@@ -45,7 +51,10 @@ function Header({ dispatch, user }) {
         <span className="font-semibold text-xl tracking-tight">Pet-Note</span>
       </div>
       <div className="block lg:hidden">
-        <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+        <button
+          onClick={() => setHamburgerMenu(!hamburgerMenu)}
+          className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white"
+        >
           <svg
             className="fill-current h-3 w-3"
             viewBox="0 0 20 20"
@@ -56,12 +65,13 @@ function Header({ dispatch, user }) {
           </svg>
         </button>
       </div>
-      <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+      <div className={menuClasses}>
         <div className="text-sm lg:flex-grow">
           {!user ? (
             <Link
               className="block mt-4 mx-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               to="/"
+              onClick={() => setHamburgerMenu(false)}
             >
               Home
             </Link>
@@ -72,6 +82,7 @@ function Header({ dispatch, user }) {
             <Link
               className="block mt-4 mx-2 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
               to="/about"
+              onClick={() => setHamburgerMenu(false)}
             >
               About
             </Link>
@@ -84,6 +95,7 @@ function Header({ dispatch, user }) {
             <Link
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
               to="/signup"
+              onClick={() => setHamburgerMenu(false)}
             >
               Sign up
             </Link>
@@ -96,6 +108,7 @@ function Header({ dispatch, user }) {
             <Link
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
               to="/login"
+              onClick={() => setHamburgerMenu(false)}
             >
               Login
             </Link>
@@ -109,6 +122,7 @@ function Header({ dispatch, user }) {
             <Link
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
               to="/dashboard"
+              onClick={() => setHamburgerMenu(false)}
             >
               Dashboard
             </Link>
@@ -122,6 +136,7 @@ function Header({ dispatch, user }) {
             <Link
               className="inline-block text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 font-semibold"
               to="/pet/add"
+              onClick={() => setHamburgerMenu(false)}
             >
               Add Pet
             </Link>
@@ -151,7 +166,7 @@ function Header({ dispatch, user }) {
               </button>
               {showDropdown ? (
                 <ul className="dropdown-menu absolute text-gray-700 pt-1 right-0 w-full">
-                  <li>
+                  <li onClick={() => setHamburgerMenu(false)}>
                     <Link
                       onClick={() => setShowDropdown(false)}
                       className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
@@ -160,7 +175,7 @@ function Header({ dispatch, user }) {
                       Profile
                     </Link>
                   </li>
-                  <li>
+                  <li onClick={() => setHamburgerMenu(false)}>
                     <a
                       onClick={logOutClickHandler}
                       className="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap cursor-pointer"
