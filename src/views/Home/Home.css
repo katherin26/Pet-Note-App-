@@ -1,5 +1,5 @@
 .kathe_banner {
-  width: 85%;
+  width: 35%;
   height: 280px;
 }
 
@@ -8,15 +8,13 @@
   width: 110%;
 }
 
-@media screen and (min-width: 370px) {
-  .kathe_banner {
-    width: 80%;
-    top: 6rem;
+@media only screen and (max-width: 320px) {
+  .kathe_overlay {
+    border: none;
   }
-}
-
-@media screen and (min-width: 770px) {
   .kathe_banner {
-    width: 35%;
+    top: 7rem;
+    width: 90%;
+    border: none;
   }
 }
