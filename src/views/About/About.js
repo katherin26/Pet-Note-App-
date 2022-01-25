@@ -40,8 +40,8 @@ export default function About() {
                 ANIMAL LOVER
               </h1>
               <p className="text-justify text-white m-5 ">
-                As a pet-parent I am always in charge of meeting the needs of my
-                pets 100%, This application gives me quick and organized access
+                As a Pet Parent, I am always in charge of meeting my pets' needs
+                100%, and This application gives me quick and organized access
                 to relevant information to guarantee a better quality of life
                 for them.
               </p>
@@ -57,9 +57,9 @@ export default function About() {
               </h1>
               <p className="text-justify text-white m-5 ">
                 My way of thinking about technology is that it must give us
-                accessibility to information , Pet-Note is based on this need
-                and with this decrease the amount of paper that is spent every
-                day in vet clinics.
+                accessibility to information, Pet-Note is based on this need and
+                with this decrease the amount of paper that is spent every day
+                in vet clinics.
               </p>
             </div>
           </div>
