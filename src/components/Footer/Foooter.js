@@ -9,10 +9,10 @@ function Footer({ user }) {
   footerClasses += !user ? "bg-transparent" : "bg-teal-600";
   return (
     <div className={footerClasses}>
-      <div className="w-auto">
-        <p>
+      <div className="w-auto ">
+        <p className="text-center ">
           <strong>
-            <i className="far fa-copyright"></i> <i className="fas fa-paw"></i>
+            <i className="far fa-copyright "></i> <i className="fas fa-paw"></i>
             Pet-Note
           </strong>{" "}
           Created By <strong>Katherin Ochoa</strong> <strong>2020</strong>

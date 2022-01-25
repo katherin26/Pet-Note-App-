@@ -10,7 +10,8 @@
 
 @media screen and (min-width: 370px) {
   .kathe_banner {
-    width: 60%;
+    width: 80%;
+    top: 6rem;
   }
 }
 
