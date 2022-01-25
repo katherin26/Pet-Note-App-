@@ -8,7 +8,8 @@
   width: 110%;
 }
 
-@media only screen and (max-width: 320px) {
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
   .kathe_overlay {
     border: none;
   }
@@ -16,5 +17,40 @@
     top: 7rem;
     width: 90%;
     border: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 700px) {
+  .kathe_banner {
+    top: -10rem;
+    width: 60%;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .kathe_banner {
+    width: 35%;
+    height: 280px;
+    top: -4rem;
+  }
+
+  .kathe_overlay {
+    height: 75%;
+    width: 110%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .kathe_banner {
+    width: 35%;
+    height: 280px;
+  }
+
+  .kathe_overlay {
+    height: 75%;
+    width: 110%;
   }
 }
