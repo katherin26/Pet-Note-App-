@@ -53,16 +53,16 @@ class PetForm extends React.Component {
   render() {
     const { loading, history } = this.props;
     return (
-      <div className="flex justify-center items-center w-full h-full">
-        <div className=" w-full lg:w-2/5  rounded overflow-hidden shadow-lg mt-10 ">
+      <div className="flex justify-center items-center w-full h-full ">
+        <div className=" w-full lg:w-2/5  rounded overflow-hidden shadow-lg mt-5 ">
           <img
-            className=" w-1/4  mx-auto  border shadow-md rounded-full"
+            className=" w-1/5  mx-auto  border shadow-md rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTyh9RN_zqCyVLtyMLck56fHrPUbJMreylVa2pfUHUMGUCeqnZt&usqp=CAU"
           />
-          <div className=" w-full px-6 py-4">
+          <div className=" w-full px-6 py-4  ">
             <div className="flex justify-center items-center w-full h-full">
               <form
-                className=" w-full max-w-lg"
+                className=" w-full max-w-lg h-1/5 "
                 onSubmit={this.handleSubmitClick.bind(this)}
               >
                 <div className="flex flex-wrap -mx-3 mb-6">

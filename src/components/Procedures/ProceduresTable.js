@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { convertTimestampToDate } from "../../utils";
+import he from "he";
 
 export default function ProceduresTable({
   procedures,
@@ -9,7 +10,9 @@ export default function ProceduresTable({
 }) {
   const tableRows = procedures.map((procedure, index) => (
     <tr key={index}>
-      <td className="border px-4 py-2 text-center">{procedure.name}</td>
+      <td className="border px-4 py-2 text-center">
+        {he.decode(procedure.name)}
+      </td>
       <td className="border px-4 py-2 text-center">
         {convertTimestampToDate(procedure.date)}
       </td>
@@ -17,7 +20,9 @@ export default function ProceduresTable({
       <td className="border px-4 py-2 text-center">
         ${procedure.cost ? procedure.cost : 0}
       </td>
-      <td className="border px-4 py-2 text-center">{procedure.comments}</td>
+      <td className="border px-4 py-2 text-center">
+        {he.decode(procedure.comments)}
+      </td>
       <td className="border px-4 py-2 text-center">
         <button
           className="tooltip bg-orange-300 hover:bg-orange-400 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"

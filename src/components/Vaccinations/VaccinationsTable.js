@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { convertTimestampToDate } from "../../utils";
+import he from "he";
 
 export default function VaccinationsTable({
   vaccinations,
@@ -9,7 +10,7 @@ export default function VaccinationsTable({
 }) {
   const tableRows = vaccinations.map((vac, index) => (
     <tr key={index}>
-      <td className="border px-4 py-2 text-center">{vac.name}</td>
+      <td className="border px-4 py-2 text-center">{he.decode(vac.name)}</td>
       <td className="border px-4 py-2 text-center">
         {convertTimestampToDate(vac.date)}
       </td>
@@ -20,7 +21,9 @@ export default function VaccinationsTable({
       <td className="border px-4 py-2 text-center">
         ${vac.cost ? vac.cost : 0}
       </td>
-      <td className="border px-4 py-2 text-center">{vac.comments}</td>
+      <td className="border px-4 py-2 text-center">
+        {he.decode(vac.comments)}
+      </td>
       <td className="border px-4 py-2 text-center">
         <button
           className="tooltip bg-orange-300 hover:bg-orange-400 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline"

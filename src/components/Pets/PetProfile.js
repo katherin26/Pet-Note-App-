@@ -5,7 +5,7 @@ import { convertTimestampToDate } from "../../utils";
 export default function PetInfo({ pet }) {
   return (
     <div className="flex justify-center items-center w-full h-full ">
-      <div className="w-11/12 rounded overflow-hidden shadow-lg mt-4 ">
+      <div className="w-11/12  rounded overflow-hidden shadow-lg mt-4 ">
         <div className="p-2 flex items-center justify-end pt-2 ">
           <Link
             to="/pet/records/profile/update"
@@ -27,7 +27,7 @@ export default function PetInfo({ pet }) {
           </div>
 
           <div className="flex w-1/2 pl-2 overflow-hidden">
-            <div className="divide-y divide-gray-400 w-full">
+            <div className="divide-y divide-gray-400 w-full ">
               <div className="flex flex-wrap w-full">
                 <div className="py-2 sm:pr-5 w-full sm:w-1/2 text-center sm:text-right text-teal-800 font-bold">
                   Specie:
