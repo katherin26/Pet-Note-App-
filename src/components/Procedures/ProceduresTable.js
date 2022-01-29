@@ -7,6 +7,8 @@ export default function ProceduresTable({
   procedures,
   clickOnEditHandler,
   clickOnDeleteHandler,
+  showLoadMore,
+  clickOnLoadMoreHandler,
 }) {
   const tableRows = procedures.map((procedure, index) => (
     <tr key={index}>
@@ -76,6 +78,11 @@ export default function ProceduresTable({
               <tbody>{tableRows}</tbody>
             </table>
           </div>
+        </div>
+        <div className="p-2 flex items-center justify-center">
+          {showLoadMore === true && (
+            <button onClick={() => clickOnLoadMoreHandler()}>load more</button>
+          )}
         </div>
       </div>
     </div>

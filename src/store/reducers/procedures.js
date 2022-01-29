@@ -5,10 +5,11 @@ import {
   DELETED_PROCEDURE,
   SELECT_PROCEDURE,
   SELECT_PET,
+  LOAD_MORE_PROCEDURES,
 } from "../actions";
 
 const initialState = {
-  procedures: JSON.parse(localStorage.getItem("procedures")) || [],
+  procedures: [],
   next: null,
   selectedProcedure: null,
 };
@@ -16,10 +17,12 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_PROCEDURES:
-      localStorage.setItem(
-        "procedures",
-        JSON.stringify(state.procedures.concat(action.procedures))
-      );
+      return {
+        procedures: action.procedures,
+        next: action.next,
+        selectedProcedure: null,
+      };
+    case LOAD_MORE_PROCEDURES:
       return {
         procedures: state.procedures.concat(action.procedures),
         next: action.next,

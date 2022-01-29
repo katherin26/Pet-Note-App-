@@ -197,9 +197,7 @@ class Vaccinations extends React.Component {
       nextToken,
       selectedPet,
     } = this.props;
-    console.log(`vaccines for selected pet `);
-    console.log(selectedPet);
-    console.log(nextToken);
+
     return (
       <React.Fragment>
         <Switch>

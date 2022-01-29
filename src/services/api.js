@@ -44,8 +44,13 @@ export async function deleteVaccination(petId, vaccinationId) {
   return API.del("PetNote", `/pets/${petId}/vaccinations/${vaccinationId}`);
 }
 
-export async function getProcedures(petId) {
-  return API.get("PetNote", `/pets/${petId}/procedures`);
+export async function getProcedures(petId, nextToken) {
+  const queryStringParameters = {};
+  if (nextToken)
+    queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+  return API.get("PetNote", `/pets/${petId}/procedures`, {
+    queryStringParameters,
+  });
 }
 
 export async function createProcedure(petId, procedure) {

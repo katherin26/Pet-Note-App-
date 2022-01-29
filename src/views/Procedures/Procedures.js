@@ -20,6 +20,7 @@ import {
   UPDATED_PROCEDURE,
   DELETED_PROCEDURE,
   SELECT_PROCEDURE,
+  LOAD_MORE_PROCEDURES,
 } from "../../store/actions";
 
 class Procedures extends React.Component {
@@ -41,6 +42,31 @@ class Procedures extends React.Component {
       const response = await getProcedures(petId);
       dispatch({
         type: LOAD_PROCEDURES,
+        procedures: response.procedures,
+        next: response.next,
+      });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  }
+
+  async fetchMoreProcedures() {
+    const { dispatch, selectedPet, nextToken } = this.props;
+    const [, petId] = selectedPet.record.split("/");
+
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getProcedures(petId, nextToken);
+      dispatch({
+        type: LOAD_MORE_PROCEDURES,
         procedures: response.procedures,
         next: response.next,
       });
@@ -164,7 +190,14 @@ class Procedures extends React.Component {
   }
 
   render() {
-    const { loading, user, selectedProcedure, procedures } = this.props;
+    const {
+      loading,
+      user,
+      selectedProcedure,
+      procedures,
+      nextToken,
+      selectedPet,
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -174,6 +207,8 @@ class Procedures extends React.Component {
               procedures={procedures}
               clickOnEditHandler={this.clickOnEditHandler.bind(this)}
               clickOnDeleteHandler={this.handleProcedureDeletion.bind(this)}
+              showLoadMore={nextToken !== null && nextToken !== undefined}
+              clickOnLoadMoreHandler={this.fetchMoreProcedures.bind(this)}
             />
           </PrivateRoute>
           <PrivateRoute exact path="/pet/records/procedures/add">
@@ -203,13 +238,20 @@ Procedures.propTypes = {
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  nextToken: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   const { loading } = state.app;
-  const { selectedProcedure, procedures } = state.procedures;
+  const { selectedProcedure, procedures, next } = state.procedures;
   const { selectedPet } = state.pets;
-  return { loading, selectedProcedure, procedures, selectedPet };
+  return {
+    loading,
+    selectedProcedure,
+    procedures,
+    selectedPet,
+    nextToken: next,
+  };
 }
 
 export default connect(mapStateToProps)(withRouter(Procedures));
