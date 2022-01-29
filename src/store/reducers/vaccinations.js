@@ -5,10 +5,11 @@ import {
   DELETED_VACCINATION,
   SELECT_VACCINATION,
   SELECT_PET,
+  LOAD_MORE_VACCINATIONS,
 } from "../actions";
 
 const initialState = {
-  vaccinations: JSON.parse(localStorage.getItem("vaccinations")) || [],
+  vaccinations: [],
   next: null,
   selectedVaccination: null,
 };
@@ -16,10 +17,12 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_VACCINATIONS:
-      localStorage.setItem(
-        "vaccinations",
-        JSON.stringify(state.vaccinations.concat(action.vaccinations))
-      );
+      return {
+        vaccinations: action.vaccinations,
+        next: action.next,
+        selectedVaccination: null,
+      };
+    case LOAD_MORE_VACCINATIONS:
       return {
         vaccinations: state.vaccinations.concat(action.vaccinations),
         next: action.next,
@@ -29,7 +32,6 @@ function reducer(state = initialState, action) {
     case ADDED_VACCINATION:
     case UPDATED_VACCINATION:
     case DELETED_VACCINATION:
-      localStorage.removeItem("vaccinations");
       return {
         vaccinations: [],
         next: null,

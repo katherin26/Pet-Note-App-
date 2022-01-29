@@ -18,8 +18,14 @@ export async function deletePet(petId) {
   return API.del("PetNote", `/pets/${petId}`);
 }
 
-export async function getVaccinations(petId) {
-  return API.get("PetNote", `/pets/${petId}/vaccinations`);
+export async function getVaccinations(petId, nextToken) {
+  const queryStringParameters = {};
+  if (nextToken)
+    queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+
+  return API.get("PetNote", `/pets/${petId}/vaccinations`, {
+    queryStringParameters,
+  });
 }
 
 export async function createVaccination(petId, vaccination) {

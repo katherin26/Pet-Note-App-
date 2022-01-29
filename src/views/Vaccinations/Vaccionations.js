@@ -20,6 +20,7 @@ import {
   UPDATED_VACCINATION,
   DELETED_VACCINATION,
   SELECT_VACCINATION,
+  LOAD_MORE_VACCINATIONS,
 } from "../../store/actions";
 
 class Vaccinations extends React.Component {
@@ -41,6 +42,30 @@ class Vaccinations extends React.Component {
       const response = await getVaccinations(petId);
       dispatch({
         type: LOAD_VACCINATIONS,
+        vaccinations: response.vaccinations,
+        next: response.next,
+      });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  }
+
+  async fetchMoreVaccinations() {
+    const { dispatch, selectedPet, nextToken } = this.props;
+    const [, petId] = selectedPet.record.split("/");
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getVaccinations(petId, nextToken);
+      dispatch({
+        type: LOAD_MORE_VACCINATIONS,
         vaccinations: response.vaccinations,
         next: response.next,
       });
@@ -164,8 +189,17 @@ class Vaccinations extends React.Component {
   }
 
   render() {
-    const { loading, user, selectedVaccination, vaccinations } = this.props;
-
+    const {
+      loading,
+      user,
+      selectedVaccination,
+      vaccinations,
+      nextToken,
+      selectedPet,
+    } = this.props;
+    console.log(`vaccines for selected pet `);
+    console.log(selectedPet);
+    console.log(nextToken);
     return (
       <React.Fragment>
         <Switch>
@@ -174,6 +208,8 @@ class Vaccinations extends React.Component {
               vaccinations={vaccinations}
               clickOnEditHandler={this.clickOnEditHandler.bind(this)}
               clickOnDeleteHandler={this.handleVaccinationDeletion.bind(this)}
+              showLoadMore={nextToken !== null && nextToken !== undefined}
+              clickOnLoadMoreHandler={this.fetchMoreVaccinations.bind(this)}
             />
           </PrivateRoute>
           <PrivateRoute exact path="/pet/records/vaccinations/add">
@@ -203,13 +239,20 @@ Vaccinations.propTypes = {
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  nextToken: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   const { loading } = state.app;
-  const { selectedVaccination, vaccinations } = state.vaccinations;
+  const { selectedVaccination, vaccinations, next } = state.vaccinations;
   const { selectedPet } = state.pets;
-  return { loading, selectedVaccination, vaccinations, selectedPet };
+  return {
+    loading,
+    selectedVaccination,
+    vaccinations,
+    selectedPet,
+    nextToken: next,
+  };
 }
 
 export default connect(mapStateToProps)(withRouter(Vaccinations));

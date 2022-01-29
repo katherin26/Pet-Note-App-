@@ -7,6 +7,8 @@ export default function VaccinationsTable({
   vaccinations,
   clickOnEditHandler,
   clickOnDeleteHandler,
+  showLoadMore,
+  clickOnLoadMoreHandler,
 }) {
   const tableRows = vaccinations.map((vac, index) => (
     <tr key={index}>
@@ -57,7 +59,7 @@ export default function VaccinationsTable({
         </div>
         <div className="flex justify-center items-center">
           <div className="flex justify-center items-center w-11/12 rounded overflow-hidden shadow-lg  m-8 overflow-x-auto">
-            <table className=" w-full table-auto">
+            <table className="w-full " style={{ height: "200px" }}>
               <thead>
                 <tr>
                   <th className="px-4 py-2 text-teal-800 font-bold ">NAME</th>
@@ -77,9 +79,19 @@ export default function VaccinationsTable({
                   </th>
                 </tr>
               </thead>
-              <tbody>{tableRows}</tbody>
+              <tbody
+                className=" overflow-y-scroll w-full"
+                style={{ height: "200px" }}
+              >
+                {tableRows}
+              </tbody>
             </table>
           </div>
+        </div>
+        <div className="p-2 flex items-center justify-center">
+          {showLoadMore === true && (
+            <button onClick={() => clickOnLoadMoreHandler()}>load more</button>
+          )}
         </div>
       </div>
     </div>
