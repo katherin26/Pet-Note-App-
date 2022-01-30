@@ -122,6 +122,13 @@ export async function deletePetNote(petId, reminderId) {
   return API.del("PetNote", `/pets/${petId}/reminders/${reminderId}`);
 }
 
-export async function getTimeline(petId) {
-  return API.get("PetNote", `/pets/${petId}/timeline`);
+export async function getTimeline(petId, nextToken) {
+  const queryStringParameters = {};
+
+  if (nextToken)
+    queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+
+  return API.get("PetNote", `/pets/${petId}/timeline`, {
+    queryStringParameters,
+  });
 }

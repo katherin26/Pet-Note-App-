@@ -9,6 +9,7 @@ import {
   REQUEST_FINISHED,
   NOTIFY_USER,
   LOAD_TIMELINE,
+  LOAD_MORE_TIMELINE,
 } from "../../store/actions";
 
 class Timeline extends React.Component {
@@ -46,8 +47,35 @@ class Timeline extends React.Component {
     }
   }
 
+  async fetchMoreTimeline() {
+    const { dispatch, selectedPet, nextToken } = this.props;
+    const [, petId] = selectedPet.record.split("/");
+
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getTimeline(petId, nextToken);
+      console.log(`response`);
+      console.log(response);
+      dispatch({
+        type: LOAD_MORE_TIMELINE,
+        timeline: response.timeline,
+        next: response.next,
+      });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  }
+
   render() {
-    const { loading, timeline } = this.props;
+    const { loading, timeline, nextToken } = this.props;
 
     const timelineCards = timeline.map((event, index) => {
       const [cardType] = event.record.split("/");
@@ -106,6 +134,13 @@ class Timeline extends React.Component {
     return (
       <React.Fragment>
         <div class="flex flex-wrap justify-center items-center w-full h-full">
+          <div className="p-2 flex items-center justify-center">
+            {nextToken && (
+              <button onClick={() => this.fetchMoreTimeline()}>
+                load more
+              </button>
+            )}
+          </div>
           <div class="w-full flex-wrap rounded overflow-hidden shadow-lg ">
             <div class="divide-y divide-gray-400 m-5 shadow-sm">
               <div class="flex justify-center items-center p-5 uppercase">
@@ -129,13 +164,14 @@ Timeline.propTypes = {
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  nextToken: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   const { loading } = state.app;
-  const { timeline } = state.timeline;
+  const { timeline, next } = state.timeline;
   const { selectedPet } = state.pets;
-  return { loading, timeline, selectedPet };
+  return { loading, timeline, selectedPet, nextToken: next };
 }
 
 export default connect(mapStateToProps)(withRouter(Timeline));

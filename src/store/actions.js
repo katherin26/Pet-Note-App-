@@ -50,3 +50,4 @@ export const LOAD_MORE_REMINDER = "LOAD_MORE_REMINDER";
 
 // Timeline actions
 export const LOAD_TIMELINE = "LOAD_TIMELINE";
+export const LOAD_MORE_TIMELINE = "LOAD_MORE_TIMELINE";
