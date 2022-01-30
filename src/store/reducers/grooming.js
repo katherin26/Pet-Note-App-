@@ -5,10 +5,11 @@ import {
   DELETED_GROOMING,
   SELECT_GROOMING,
   SELECT_PET,
+  LOAD_MORE_GROOMING,
 } from "../actions";
 
 const initialState = {
-  grooming: JSON.parse(localStorage.getItem("grooming")) || [],
+  grooming: [],
   next: null,
   selectedGrooming: null,
 };
@@ -16,14 +17,15 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_GROOMING:
-      localStorage.setItem(
-        "grooming",
-        JSON.stringify(state.grooming.concat(action.grooming))
-      );
       return {
         grooming: state.grooming.concat(action.grooming),
         next: action.next,
         selectedGrooming: null,
+      };
+    case LOAD_MORE_GROOMING:
+      return {
+        grooming: state.grooming.concat(action.grooming),
+        next: action.next,
       };
     case SELECT_PET:
     case ADDED_GROOMING:

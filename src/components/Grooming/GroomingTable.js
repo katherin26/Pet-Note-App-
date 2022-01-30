@@ -6,6 +6,8 @@ export default function GroomingTable({
   grooming,
   clickOnEditHandler,
   clickOnDeleteHandler,
+  showLoadMore,
+  clickOnLoadMoreHandler,
 }) {
   const tableRows = grooming.map((grooming, index) => (
     <tr key={index}>
@@ -71,6 +73,11 @@ export default function GroomingTable({
               <tbody>{tableRows}</tbody>
             </table>
           </div>
+        </div>
+        <div className="p-2 flex items-center justify-center">
+          {showLoadMore === true && (
+            <button onClick={() => clickOnLoadMoreHandler()}>LoadMore</button>
+          )}
         </div>
       </div>
     </div>

@@ -69,8 +69,14 @@ export async function deleteProcedure(petId, procedureId) {
   return API.del("PetNote", `/pets/${petId}/procedures/${procedureId}`);
 }
 
-export async function getGrooming(petId) {
-  return API.get("PetNote", `/pets/${petId}/grooming`);
+export async function getGrooming(petId, nextToken) {
+  const queryStringParameters = {};
+  if (nextToken) {
+    queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+    return API.get("PetNote", `/pets/${petId}/grooming`, {
+      queryStringParameters,
+    });
+  }
 }
 
 export async function createGrooming(petId, grooming) {

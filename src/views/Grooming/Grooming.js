@@ -20,6 +20,7 @@ import {
   UPDATED_GROOMING,
   DELETED_GROOMING,
   SELECT_GROOMING,
+  LOAD_MORE_GROOMING,
 } from "../../store/actions";
 
 class Grooming extends React.Component {
@@ -42,6 +43,31 @@ class Grooming extends React.Component {
       dispatch({
         type: LOAD_GROOMING,
         grooming: response.grooming,
+        next: response.next,
+      });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  }
+
+  async fetchMoreGrooming() {
+    const { dispatch, selectedPet, nextToken } = this.props;
+    const [, petId] = selectedPet.record.split("/");
+
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getGrooming(petId, nextToken);
+      dispatch({
+        type: LOAD_MORE_GROOMING,
+        procedures: response.procedures,
         next: response.next,
       });
     } catch (e) {
@@ -164,7 +190,14 @@ class Grooming extends React.Component {
   }
 
   render() {
-    const { loading, user, selectedGrooming, grooming } = this.props;
+    const {
+      loading,
+      user,
+      selectedGrooming,
+      grooming,
+      nextToken,
+      selectedPet,
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -174,6 +207,8 @@ class Grooming extends React.Component {
               grooming={grooming}
               clickOnEditHandler={this.clickOnEditHandler.bind(this)}
               clickOnDeleteHandler={this.handleGroomingDeletion.bind(this)}
+              showLoadMore={nextToken !== null && nextToken !== undefined}
+              clickOnLoadMoreHandler={this.fetchMoreGrooming.bind(this)}
             />
           </PrivateRoute>
           <PrivateRoute exact path="/pet/records/grooming/add">
@@ -203,13 +238,14 @@ Grooming.propTypes = {
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  nextToken: PropTypes.object,
 };
 
 function mapStateToProps(state) {
   const { loading } = state.app;
-  const { selectedGrooming, grooming } = state.grooming;
+  const { selectedGrooming, grooming, next } = state.grooming;
   const { selectedPet } = state.pets;
-  return { loading, selectedGrooming, grooming, selectedPet };
+  return { loading, selectedGrooming, grooming, selectedPet, nextToken: next };
 }
 
 export default connect(mapStateToProps)(withRouter(Grooming));
