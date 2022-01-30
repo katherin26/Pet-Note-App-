@@ -5,10 +5,11 @@ import {
   DELETED_REMINDER,
   SELECT_REMINDER,
   SELECT_PET,
+  LOAD_MORE_REMINDER,
 } from "../actions";
 
 const initialState = {
-  reminders: JSON.parse(localStorage.getItem("reminders")) || [],
+  reminders: [],
   next: null,
   selectedReminder: null,
 };
@@ -16,15 +17,17 @@ const initialState = {
 function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_REMINDERS:
-      localStorage.setItem(
-        "reminders",
-        JSON.stringify(state.reminders.concat(action.reminders))
-      );
       return {
-        reminders: state.reminders.concat(action.reminders),
+        reminders: action.reminders,
         next: action.next,
         selectedReminder: null,
       };
+    case LOAD_MORE_REMINDER: {
+      return {
+        reminders: state.reminders.concat(action.reminders),
+        next: action.next,
+      };
+    }
     case SELECT_PET:
     case ADDED_REMINDER:
     case UPDATED_REMINDER:

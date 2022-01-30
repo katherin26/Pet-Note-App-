@@ -7,6 +7,7 @@ class GroomingForm extends React.Component {
   constructor(props) {
     super(props);
     const { grooming } = props;
+    console.log(grooming);
 
     if (grooming) {
       const date = convertTimestampToISODate(grooming.date);

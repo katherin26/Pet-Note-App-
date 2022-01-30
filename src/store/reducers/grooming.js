@@ -18,7 +18,7 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case LOAD_GROOMING:
       return {
-        grooming: state.grooming.concat(action.grooming),
+        grooming: action.grooming,
         next: action.next,
         selectedGrooming: null,
       };
@@ -26,6 +26,7 @@ function reducer(state = initialState, action) {
       return {
         grooming: state.grooming.concat(action.grooming),
         next: action.next,
+        selectedGrooming: null,
       };
     case SELECT_PET:
     case ADDED_GROOMING:

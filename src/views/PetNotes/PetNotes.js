@@ -10,6 +10,7 @@ import {
   createPetNote,
   updatePetNote,
   deletePetNote,
+  getProcedures,
 } from "../../services/api";
 import {
   REQUEST_SENT,
@@ -20,6 +21,7 @@ import {
   UPDATED_REMINDER,
   DELETED_REMINDER,
   SELECT_REMINDER,
+  LOAD_MORE_REMINDER,
 } from "../../store/actions";
 
 class PetNotes extends React.Component {
@@ -41,6 +43,31 @@ class PetNotes extends React.Component {
       const response = await getPetNotes(petId);
       dispatch({
         type: LOAD_REMINDERS,
+        reminders: response.reminders,
+        next: response.next,
+      });
+    } catch (e) {
+      dispatch({
+        type: NOTIFY_USER,
+        notification: {
+          type: "error",
+          message: e.message,
+        },
+      });
+    } finally {
+      dispatch({ type: REQUEST_FINISHED });
+    }
+  }
+
+  async fetchMorePetNotes() {
+    const { dispatch, selectedPet, nextToken } = this.props;
+    const [, petId] = selectedPet.record.split("/");
+
+    try {
+      dispatch({ type: REQUEST_SENT });
+      const response = await getPetNotes(petId, nextToken);
+      dispatch({
+        type: LOAD_MORE_REMINDER,
         reminders: response.reminders,
         next: response.next,
       });
@@ -164,7 +191,8 @@ class PetNotes extends React.Component {
   }
 
   render() {
-    const { loading, user, selectedPetNote, petnotes } = this.props;
+    const { loading, user, selectedPetNote, petnotes, nextToken, selectedPet } =
+      this.props;
 
     return (
       <React.Fragment>
@@ -174,12 +202,15 @@ class PetNotes extends React.Component {
               petnotes={petnotes}
               clickOnEditHandler={this.clickOnEditHandler.bind(this)}
               clickOnDeleteHandler={this.handlePetNoteDeletion.bind(this)}
+              showLoadMore={nextToken !== null && nextToken !== undefined}
+              clickOnLoadMoreHandler={this.fetchMorePetNotes.bind(this)}
             />
           </PrivateRoute>
           <PrivateRoute exact path="/pet/records/petnotes/add">
             <PetNoteForm
               formHandler={this.handlePetNoteCreation.bind(this)}
               loading={loading}
+              pet={selectedPet}
             />
           </PrivateRoute>
           <PrivateRoute exact path="/pet/records/petnotes/update">
@@ -187,6 +218,7 @@ class PetNotes extends React.Component {
               petnote={selectedPetNote}
               formHandler={this.handlePetNoteUpdate.bind(this)}
               loading={loading}
+              pet={selectedPet}
             />
           </PrivateRoute>
         </Switch>
@@ -203,6 +235,7 @@ PetNotes.propTypes = {
   selectedPet: PropTypes.object,
   location: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  nextToken: PropTypes.object,
 };
 
 function mapStateToProps(state) {
@@ -210,9 +243,10 @@ function mapStateToProps(state) {
   const {
     selectedReminder: selectedPetNote,
     reminders: petnotes,
+    next,
   } = state.reminders;
   const { selectedPet } = state.pets;
-  return { loading, selectedPetNote, petnotes, selectedPet };
+  return { loading, selectedPetNote, petnotes, selectedPet, nextToken: next };
 }
 
 export default connect(mapStateToProps)(withRouter(PetNotes));

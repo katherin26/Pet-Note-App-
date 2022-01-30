@@ -6,17 +6,18 @@ import { convertTimestampToISODate, convertDateToTimestamp } from "../../utils";
 class PetNoteForm extends React.Component {
   constructor(props) {
     super(props);
-    const { petnote } = props;
+    const { petnote, pet } = props;
 
     if (petnote) {
       const date = convertTimestampToISODate(petnote.date);
-      this.state = { ...petnote, date };
+      this.state = { ...petnote, date, pname: pet.name };
     } else {
       this.state = {
         name: "",
         date: "",
         comments: "",
         location: "",
+        pname: pet.name,
       };
     }
   }

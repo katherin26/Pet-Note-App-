@@ -67,7 +67,7 @@ class Grooming extends React.Component {
       const response = await getGrooming(petId, nextToken);
       dispatch({
         type: LOAD_MORE_GROOMING,
-        procedures: response.procedures,
+        grooming: response.grooming,
         next: response.next,
       });
     } catch (e) {

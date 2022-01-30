@@ -7,6 +7,8 @@ export default function PetNoteCards({
   clickOnDoneHandler,
   clickOnEditHandler,
   clickOnDeleteHandler,
+  showLoadMore,
+  clickOnLoadMoreHandler,
 }) {
   const petNoteCards = petnotes.map((petnote, index) => (
     <div key={index} className="flex w-full sm:w-1/4">
@@ -91,7 +93,19 @@ export default function PetNoteCards({
             <i className="fas fa-plus"></i>
           </Link>
         </div>
-        <div className="flex flex-wrap w-full h-full">{petNoteCards}</div>
+
+        <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center w-11/12 h-1/4 rounded overflow-hidden shadow-lg  m-6 overflow-x-auto">
+            <div className="flex flex-wrap w-full h-full">{petNoteCards}</div>
+          </div>
+          <div className="p-2 flex items-center justify-center">
+            {showLoadMore === true && (
+              <button onClick={() => clickOnLoadMoreHandler()}>
+                Load More
+              </button>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );

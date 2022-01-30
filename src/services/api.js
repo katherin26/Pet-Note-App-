@@ -48,6 +48,7 @@ export async function getProcedures(petId, nextToken) {
   const queryStringParameters = {};
   if (nextToken)
     queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+
   return API.get("PetNote", `/pets/${petId}/procedures`, {
     queryStringParameters,
   });
@@ -71,12 +72,12 @@ export async function deleteProcedure(petId, procedureId) {
 
 export async function getGrooming(petId, nextToken) {
   const queryStringParameters = {};
-  if (nextToken) {
+  if (nextToken)
     queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
-    return API.get("PetNote", `/pets/${petId}/grooming`, {
-      queryStringParameters,
-    });
-  }
+
+  return API.get("PetNote", `/pets/${petId}/grooming`, {
+    queryStringParameters,
+  });
 }
 
 export async function createGrooming(petId, grooming) {
@@ -95,8 +96,14 @@ export async function deleteGrooming(petId, groomingId) {
   return API.del("PetNote", `/pets/${petId}/grooming/${groomingId}`);
 }
 
-export async function getPetNotes(petId) {
-  return API.get("PetNote", `/pets/${petId}/reminders`);
+export async function getPetNotes(petId, nextToken) {
+  const queryStringParameters = {};
+
+  if (nextToken)
+    queryStringParameters.next = encodeURIComponent(JSON.stringify(nextToken));
+  return API.get("PetNote", `/pets/${petId}/reminders`, {
+    queryStringParameters,
+  });
 }
 
 export async function createPetNote(petId, reminder) {
